@@ -1,0 +1,44 @@
+/* gif 포함 메인 영역 Container css */
+#mainContentContainer {
+    width: 100vw;
+    height: 810px;
+    
+    background-image: url('https://media2.giphy.com/media/E5Hfk3kV0G5zcKPWy4/giphy.gif?cid=ecf05e47qjqmibqgahzkwf9og8phuofmfqartc3r748pnwum&rid=giphy.gif&ct=g');
+    background-size: 100vw 810px;
+    background-repeat: no-repeat;
+}
+
+#mainContentContainer div {
+    color: white;
+    font-size: 64px;
+    line-height: 70px;
+    font-weight: 800;
+    text-shadow: rgb(0 0 0 / 20%) 0px 0px 8px;
+}
+/* gif 포함 메인 영역 Container css */
+
+
+/* 맵 소개 영역 Container css */
+#mapContentContainer {
+
+}
+/* 맵 소개 영역 Container css */
+
+
+/* 맵 소개 영역 내용 css */
+#mapTitle {
+    font-size: 48px;
+    line-height: 70px;
+    font-weight: 800;
+    margin-top: 150px;
+}
+/* 맵 소개 영역 내용 css */
+
+
+/* 내부 content를 가운데 정렬시키는 css */
+.contentCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* 내부 content를 가운데 정렬시키는 css */
