@@ -10,4 +10,5 @@ React<br />
 Recoil(상태관리)<br />
 React-Router-Dom(페이지 라우팅)<br />
 React Bootstrap(디자인 작업)<br />
+AOS(스크롤 애니메이션 디자인)<br />
 axios(백엔드와의 통신)
