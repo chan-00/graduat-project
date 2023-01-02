@@ -7,5 +7,6 @@
 ## 사용 기술
 
 React<br />
+Recoil(상태관리)<br />
 React Bootstrap(디자인 작업)<br />
 axios(백엔드와의 통신)
