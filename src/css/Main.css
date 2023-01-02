@@ -18,21 +18,55 @@
 /* gif 포함 메인 영역 Container css */
 
 
-/* 맵 소개 영역 Container css */
-#mapContentContainer {
-
+/* 컨텐츠 소개 전체 영역 Container css */
+.contentsContainer {
+    width: 100vw;
+    text-align: center;
+    padding-bottom: 150px;
 }
 /* 맵 소개 영역 Container css */
 
 
-/* 맵 소개 영역 내용 css */
-#mapTitle {
+/* 컨텐츠 소개 영역 제목 css */
+.contentsTitle {
     font-size: 48px;
     line-height: 70px;
     font-weight: 800;
     margin-top: 150px;
 }
-/* 맵 소개 영역 내용 css */
+/* 컨텐츠 소개 영역 제목 css */
+
+
+/* 컨텐츠 영역 css */
+.mapContainer {
+    margin-top: 80px;
+}
+
+.mapContainer h2 {
+    font-size: 30px;
+    line-height: 70px;
+    font-weight: 800;
+    margin-top: 50px;
+    display: block;
+}
+
+.mapContainer p {
+    font-size: 20px;
+}
+
+.mapContainer img {
+    width: 1000px;
+    height: 500px;
+}
+/* 컨텐츠 영역 css */
+
+
+/* 캐릭터 소개 영역 Container css */
+#characterContainer {
+    background-color: #f8f8fa;
+    padding-top: 5px;
+}
+/* 백그라운드 색을 gray 색으로 바꾸는 css */
 
 
 /* 내부 content를 가운데 정렬시키는 css */

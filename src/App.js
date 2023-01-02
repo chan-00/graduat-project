@@ -1,6 +1,6 @@
-//react-routing
+//import react-routing
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
-//user component import
+//import user component
 import Header from "./Components/Header";
 import Main from "./Components/Main";
 //import App css
