@@ -6,6 +6,6 @@
 
 ## 사용 기술
 
-React
-React Bootstrap(디자인 작업)
+React<br />
+React Bootstrap(디자인 작업)<br />
 axios(백엔드와의 통신)
