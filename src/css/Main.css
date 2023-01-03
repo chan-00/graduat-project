@@ -38,25 +38,28 @@
 
 
 /* 컨텐츠 영역 css */
-.mapContainer {
+.mainContentsContainer {
     margin-top: 80px;
 }
 
-.mapContainer h2 {
+.mainContentsContainer h2 {
     font-size: 30px;
     line-height: 70px;
     font-weight: 800;
     margin-top: 50px;
-    display: block;
 }
 
-.mapContainer p {
+.mainContentsContainer p {
     font-size: 20px;
 }
 
-.mapContainer img {
+.mainContentsContainer img {
     width: 1000px;
     height: 500px;
+}
+
+.mainContentsContainer div {
+    display: inline-block;
 }
 /* 컨텐츠 영역 css */
 
@@ -65,6 +68,15 @@
 #characterContainer {
     background-color: #f8f8fa;
     padding-top: 5px;
+}
+
+#characterContainer img {
+    width: 300px;
+    height: 700px;
+}
+
+#characterContainer .mainContentsContainer div:first-child {
+    margin-right: 300px;
 }
 /* 백그라운드 색을 gray 색으로 바꾸는 css */
 
