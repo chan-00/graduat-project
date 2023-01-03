@@ -1,4 +1,5 @@
 
+//맵 소개 영역 컴포넌트
 function MainMapArea() {
     return (
         <div className="contentsContainer">

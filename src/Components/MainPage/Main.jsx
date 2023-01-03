@@ -1,5 +1,5 @@
 //import Main css
-import "../css/Main.css";
+import "../../css/MainPageCss/Main.css";
 //import aos
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -9,7 +9,11 @@ import { useEffect } from "react";
 import MainMapArea from "./MainMapArea";
 import MainCharacterArea from "./MainCharacterArea";
 
+
+//메인 페이지 영역 제작
+//맵 소개와 캐릭터 소개 영역은 내용이 길어져 따로 component로 만들었다.
 function Main() {
+    //스크롤을 내릴 때 fade-on 되는 애니메이션 적용을 위한 AOS 객체의 초기화를 useEffect에서 해 줘야 한다.
     useEffect(() => {
         AOS.init();
     }, []);

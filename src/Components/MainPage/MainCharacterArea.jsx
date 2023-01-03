@@ -1,4 +1,5 @@
 
+//캐릭터 소개 영역 컴포넌트
 function MainCharacterArea() {
     return (
         <div className="contentsContainer" id="characterContainer">
