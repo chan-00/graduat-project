@@ -22,13 +22,13 @@ function functionSignUp(idRef, pwRef, pwCheckRef, nicknameRef, navigate) {
     //비밀번호와 비밀번호 체크 값이 같은지 확인하여 같으면 axios로 서버에 값을 보낸다.
     if(pwRef.current.value === pwCheckRef.current.value) {
         //axios post 방식으로 서버 url에 signup 요청을 보낸다.(입력한 값도 같이 보냄)
-        axios.post("http://" + server_ip + ":8000/back/reeegist/", {
+        axios.post("http://" + server_ip + ":8000/back/regist/", {
             id: idRef.current.value,
             pw: pwRef.current.value,
             nickname: nicknameRef.current.value
         }).then((res) => {
             //백에서 성공적으로 처리되었을 때 then 함수 안으로 들어오게 된다.
-            alert("회원가입 성공!");
+            //alert("회원가입 성공!");
             //window.sessionStorage.setItem("id", idRef.current.value);
             //navigate("/");
             console.log(res);
