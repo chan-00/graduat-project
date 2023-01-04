@@ -5,17 +5,36 @@ function functionSignUp(idRef, pwRef, pwCheckRef, nicknameRef, navigate) {
     //데이터베이스로 sql 쿼리 문으로 데이터를 넘길 때 밑의 3개 값이 포함되면 에러가 발생할 수 있기에 사전 차단하기 위한 조건문을 쓴다.
     if(idRef.current.value.includes("(") || idRef.current.value.includes(")") || idRef.current.value.includes(";")) {
         alert("id에 (, ), ; 값 중 하나 이상이 들어가 있습니다.");
-        idRef.current.value = "";
+        idRef.current.focus();
         return false;
     }
     if(pwRef.current.value.includes("(") || pwRef.current.value.includes(")") || pwRef.current.value.includes(";")) {
         alert("비밀번호에 (, ), ; 값 중 하나 이상이 들어가 있습니다.");
         pwRef.current.value = "";
+        pwRef.current.focus();
         return false;
     }
     if(nicknameRef.current.value.includes("(") || nicknameRef.current.value.includes(")") || nicknameRef.current.value.includes(";")) {
         alert("이름에 (, ), ; 값 중 하나 이상이 들어가 있습니다.");
-        nicknameRef.current.value = "";
+        nicknameRef.current.focus();
+        return false;
+    }
+
+    //사용자가 입력한 아이디, 비밀번호, 닉네임 값이 특정 문자 개수 이상 넘길 수 있도록 제한한다.
+    if(idRef.current.value.length < 4) {
+        alert("id를 4글자 이상 입력하세요.");
+        idRef.current.focus();
+        return false;
+    }
+    if(pwRef.current.value.length < 7) {
+        alert("비밀번호를 7글자 이상 입력하세요.");
+        pwRef.current.value = "";
+        pwRef.current.focus();
+        return false;
+    }
+    if(idRef.current.value.length < 4) {
+        alert("닉네임을 4글자 이상 입력하세요.");
+        nicknameRef.current.focus();
         return false;
     }
 
@@ -28,10 +47,20 @@ function functionSignUp(idRef, pwRef, pwCheckRef, nicknameRef, navigate) {
             nickname: nicknameRef.current.value
         }).then((res) => {
             //백에서 성공적으로 처리되었을 때 then 함수 안으로 들어오게 된다.
-            //alert("회원가입 성공!");
-            //window.sessionStorage.setItem("id", idRef.current.value);
-            //navigate("/");
-            console.log(res);
+            //백엔드로부터 받은 데이터를 if 조건문으로 구분하여 상황에 맞는 코드를 쓴다.
+            //아이디/닉네임 중복이라는 데이터 받을 때 alert 창으로 알려 준다.
+            if(res.data.chk_message === "아이디 중복입니다.") {
+                alert("아이디의 중복 여부를 다시 확인해주세요.");
+            }
+            else if(res.data.chk_message === "닉네임 중복입니다.") {
+                alert("이미 존재하는 닉네임입니다.");
+            }
+            //위의 두 조건에 걸리지 않는다면 회원가입 성공 메시지를 띄우고 session storage에 id 값을 부여한다.
+            else {
+                alert("회원가입 성공!");
+                window.sessionStorage.setItem("id", idRef.current.value);
+                navigate("/");
+            }
         }).catch((err) => {
             console.log(err);
         })

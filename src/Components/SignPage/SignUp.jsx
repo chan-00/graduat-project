@@ -20,7 +20,7 @@ function SignUp() {
     const signupRef = useRef();
 
     //사용자가 입력한 아이디 값이 중복인지 아닌지를 표현하는 useState 변수
-    const [ idCheckMessage, setIdCheckMessage ] = useState("사용 가능한 아이디입니다.");
+    const [ idCheckMessage, setIdCheckMessage ] = useState("");
     //회원가입 버튼의 활성화/비활성화 여부를 다루는 useState 변수
     const [ signBtnActivation, setSignBtnActivation ] = useState(true);
 
@@ -58,7 +58,7 @@ function SignUp() {
                     />
                 </div>
                 <div>
-                    <Button variant="outline-primary" className="formElements" style={{width:"170px", marginRight:"10px"}} onClick={handleIdCheck}>아이디 중복확인</Button>
+                    <Button variant="outline-primary" className="formElements" style={{width:"150px", marginRight:"10px", height:"35px", fontSize:"14px"}} onClick={handleIdCheck}>아이디 중복확인</Button>
                     <span style={{fontSize:"14px"}}>{idCheckMessage}</span>
                 </div>
                 <div>
