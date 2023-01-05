@@ -19,12 +19,13 @@ function SignIn() {
 
     //로그인 버튼 클릭 시 백엔드와 통신하는 함수 호출
     const handleSignIn = (e) => {
+        e.preventDefault();
         functionSignIn(idRef, pwRef, navigate);
     }
 
     return (
         <div className="signAllContainer">
-            <div className="signContainer">
+            <form className="signContainer" onSubmit={handleSignIn}>
                 <h2>서일대 계정을 입력하세요</h2>
                 <hr></hr>
                 <div>
@@ -47,12 +48,12 @@ function SignIn() {
                     />
                 </div>
                 <div className="signButtonContainer">
-                    <Button variant="primary" className="formElements" onClick={handleSignIn}>로그인</Button>
+                    <Button type="submit" variant="primary" className="formElements">로그인</Button>
                 </div>
                 <div>
                     <span style={{fontSize:"14px"}}>서일대가 처음이신가요? <Link to="/signup">회원가입</Link></span>
                 </div>
-            </div>
+            </form>
         </div>
     )
 }

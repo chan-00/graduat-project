@@ -32,7 +32,7 @@ function functionSignUp(idRef, pwRef, pwCheckRef, nicknameRef, navigate) {
         pwRef.current.focus();
         return false;
     }
-    if(idRef.current.value.length < 4) {
+    if(nicknameRef.current.value.length < 4) {
         alert("닉네임을 4글자 이상 입력하세요.");
         nicknameRef.current.focus();
         return false;
@@ -59,6 +59,7 @@ function functionSignUp(idRef, pwRef, pwCheckRef, nicknameRef, navigate) {
             else {
                 alert("회원가입 성공!");
                 window.sessionStorage.setItem("id", idRef.current.value);
+                window.sessionStorage.setItem("nickname", nicknameRef.current.value);
                 navigate("/");
             }
         }).catch((err) => {

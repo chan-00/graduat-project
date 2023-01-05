@@ -5,7 +5,7 @@ import Header from "./Components/MainPage/Header";
 import Main from "./Components/MainPage/Main";
 import SignIn from "./Components/SignPage/SignIn";
 import SignUp from "./Components/SignPage/SignUp";
-import MyPage from "./Components/SignPage/MyPage";
+import MyPage from "./Components/MyPage/MyPage";
 import TeamMain from "./Components/TeamPage/TeamMain";
 import OfferBoard from "./Components/BoardPage/OfferBoard";
 import QuestionBoard from "./Components/BoardPage/QuestionBoard";

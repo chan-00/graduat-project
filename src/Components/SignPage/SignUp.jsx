@@ -34,17 +34,19 @@ function SignUp() {
 
     //아이디 중복 버튼 클릭 시 백엔드와 통신하는 함수 호출
     const handleIdCheck = (e) => {
+        e.preventDefault();
         functionIdCheck(idRef, setIdCheckMessage, setSignBtnActivation);
     }
 
     //회원가입 버튼 클릭 시 백엔드와 통신하는 함수 호출
     const handleSignUp = (e) => {
+        e.preventDefault();
         functionSignUp(idRef, pwRef, pwCheckRef, nicknameRef, navigate);
     }
 
     return (
         <div className="signAllContainer">
-            <div className="signContainer">
+            <form className="signContainer" onSubmit={handleSignUp}>
                 <h2>서일대 계정을 생성하세요</h2>
                 <hr></hr>
                 <div>
@@ -89,9 +91,9 @@ function SignUp() {
                     />
                 </div>
                 <div className="signButtonContainer">
-                    <Button variant="primary" className="formElements" onClick={handleSignUp} ref={signupRef}>회원가입</Button>
+                    <Button type="submit" variant="primary" className="formElements" ref={signupRef}>회원가입</Button>
                 </div>
-            </div>
+            </form>
         </div>
     )
 }

@@ -18,20 +18,20 @@ function functionSignIn(idRef, pwRef, navigate) {
         id: idRef.current.value,
         pw: pwRef.current.value,
     }).then((res) => {
-        /*
-        console.log(res.data[0].cnt);
-        if (res.data[0].cnt === 1) {
+        if(res.data.login_message === "아이디가 틀렸습니다.") {
+            alert("아이디가 틀렸습니다.");
+            idRef.current.focus();
+        }
+        else if(res.data.login_message === "비밀번호가 틀렸습니다.") {
+            alert("비밀번호가 틀렸습니다.");
+            pwRef.current.focus();
+        }
+        else if(res.data.login_message === "환영합니다!") {
             alert("로그인 성공!");
             window.sessionStorage.setItem("id", idRef.current.value);
+            window.sessionStorage.setItem("nickname", res.data.return_name[0].user_name);
             navigate("/");
-        } 
-        else {
-            alert("로그인 실패!");
-            idRef.current.value = "";
-            pwRef.current.value = "";
         }
-        */
-       console.log(res);
     }).catch((err) => {
         console.log(err);
     })

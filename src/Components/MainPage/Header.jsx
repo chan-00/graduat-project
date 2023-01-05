@@ -87,7 +87,7 @@ function Header() {
                 </Nav>
                 <Nav id="userContainer">
                     {window.sessionStorage.id
-                    ? <NavDropdown title={window.sessionStorage.id} id="basic-nav-dropdown">
+                    ? <NavDropdown title={window.sessionStorage.nickname} id="basic-nav-dropdown">
                         <NavDropdown.Item onClick={handleMyPage}>My Page</NavDropdown.Item>
                         <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                     </NavDropdown>

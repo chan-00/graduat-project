@@ -8,15 +8,15 @@
     margin: 200px auto 0;
 }
 
-.signAllContainer > div h2 {
+.signAllContainer > form h2 {
     text-align: center;
 }
 
-.signAllContainer > div hr {
+.signAllContainer > form hr {
     margin-bottom: 40px;
 }
 
-.signAllContainer > div div {
+.signAllContainer > form div {
     margin-bottom: 10px;
 }
 
