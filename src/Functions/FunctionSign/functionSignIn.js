@@ -13,7 +13,7 @@ function functionSignIn(idRef, pwRef, navigate) {
         pwRef.current.focus();
         return false;
     }
-    //server 주소는 수정해야 함.
+    
     axios.post("http://" + server_ip + ":8000/back/login/", {
         id: idRef.current.value,
         pw: pwRef.current.value,

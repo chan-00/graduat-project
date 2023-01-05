@@ -1,15 +1,19 @@
 //import css
 import "../../css/MyPageCss/MyPage.css";
+import "../../css/SignPageCss/Sign.css";
 //import react bootstrap icons
 import { PersonCircle } from "react-bootstrap-icons";
 import { Button, Modal } from "react-bootstrap";
 //import react hooks
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 //import components
 import JoinTeam from "./JoinTeam";
 import ApplyMessage from "./ApplyMessage";
 //import react router
 import { useNavigate } from "react-router-dom";
+//import functions
+import functionPwdModify from "../../Functions/FunctionModify/functionPwdModify";
+import functionNicknameModify from "../../Functions/FunctionModify/functionNicknameModify";
 
 
 //마이페이지 영역 컴포넌트
@@ -22,6 +26,13 @@ function MyPage() {
     const [ passwordModifyModalShow, setPasswordModifyModalShow ] = useState(false);
     //nickname edit 버튼 클릭 시 닉네임 수정을 할 수 있는 Modal 창을 띄우게 하도록 하는 Boolean useState 변수
     const [ nicknameModifyModalShow, setNicknameModifyModalShow ] = useState(false);
+
+    //기존 비밀번호 입력 input에 대한 useRef 변수
+    const pwRef = useRef();
+    //새로운 비밀번호 입력 input에 대한 useRef 변수
+    const newPwRef = useRef();
+    //새로운 닉네임 입력 input에 대한 useRef 변수
+    const newNicknameRef = useRef();
 
     //마이페이지 첫 렌더링 시 body 태그의 background color를 변경하기 위한 useEffect 작업
     useEffect(() => {
@@ -48,6 +59,17 @@ function MyPage() {
     //Nav에서 Apply Message 버튼 클릭 시 호출되는 이벤트 함수이다.
     const handleApplyMessageClick = () => {
         setClickTeamBtnState(false);
+    }
+
+    //비밀번호 수정 Modal창에서 수정 버튼 클릭 시 호출되는 이벤트 함수이다.
+    const handlePasswordModify = (e) => {
+        e.preventDefault();
+        functionPwdModify(window.sessionStorage.id, pwRef, newPwRef, handlePasswordModifyModalClose);
+    }
+    //닉네임 수정 Modal창에서 수정 버튼 클릭 시 호출되는 이벤트 함수이다.
+    const handleNicknameModify = (e) => {
+        e.preventDefault();
+        functionNicknameModify(window.sessionStorage.id, newNicknameRef, handleNicknameModifyModalClose);
     }
 
     return (
@@ -78,33 +100,67 @@ function MyPage() {
                     </div>
                 </div>
             </div>
-            <Modal show={passwordModifyModalShow} onHide={handlePasswordModifyModalClose}>
+            <Modal 
+                show={passwordModifyModalShow} 
+                onHide={handlePasswordModifyModalClose}
+                >
                 <Modal.Header closeButton>
-                    Password Change
+                    <h4>Password Change</h4>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-                <Modal.Footer>
-                <Button variant="secondary" onClick={handlePasswordModifyModalClose}>
-                    Close
-                </Button>
-                <Button variant="primary" onClick={handlePasswordModifyModalClose}>
-                    Save Changes
-                </Button>
-                </Modal.Footer>
+                <Modal.Body>
+                    <form className="signContainer" onSubmit={handlePasswordModify}>
+                        <div>
+                            <input
+                                type="password"
+                                placeholder="기존 비밀번호 입력"
+                                ref={pwRef}
+                                autoFocus
+                                required
+                                className="formElements inputElements"
+                                style={{marginBottom:"10px", borderRadius:"5px"}}
+                            />
+                        </div>
+                        <div>
+                            <input
+                                type="password"
+                                placeholder="새로운 비밀번호 입력"
+                                ref={newPwRef}
+                                required
+                                className="formElements inputElements"
+                                style={{borderRadius:"5px"}}
+                            />
+                        </div>
+                        <div className="signButtonContainer" style={{marginTop:"20px"}}>
+                            <Button type="submit" variant="outline-primary" className="modifyButtons" style={{fontSize:"13px"}}>비밀번호 수정</Button>
+                            <Button variant="outline-danger" className="modifyButtons" style={{marginLeft:"10px", fontSize:"13px"}} onClick={handlePasswordModifyModalClose}>취소</Button>
+                        </div>
+                    </form>
+                </Modal.Body>
             </Modal>
             <Modal show={nicknameModifyModalShow} onHide={handleNicknameModifyModalClose}>
                 <Modal.Header closeButton>
-                    Nickname Change
+                    <h4>Nickname Change</h4>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-                <Modal.Footer>
-                <Button variant="secondary" onClick={handleNicknameModifyModalClose}>
-                    Close
-                </Button>
-                <Button variant="primary" onClick={handleNicknameModifyModalClose}>
-                    Save Changes
-                </Button>
-                </Modal.Footer>
+                <Modal.Body>
+                    <form className="signContainer" onSubmit={handleNicknameModify}>
+                        <div>
+                            <input
+                                type="text"
+                                placeholder="새로운 닉네임 입력"
+                                ref={newNicknameRef}
+                                defaultValue={window.sessionStorage.nickname}
+                                autoFocus
+                                required
+                                className="formElements inputElements"
+                                style={{marginBottom:"10px", borderRadius:"5px"}}
+                            />
+                        </div>
+                        <div className="signButtonContainer" style={{marginTop:"20px"}}>
+                            <Button type="submit" variant="outline-primary" className="modifyButtons" style={{fontSize:"13px"}}>닉네임 수정</Button>
+                            <Button variant="outline-danger" className="modifyButtons" style={{marginLeft:"10px", fontSize:"13px"}} onClick={handleNicknameModifyModalClose}>취소</Button>
+                        </div>
+                    </form>
+                </Modal.Body>
             </Modal>
         </div>
     )

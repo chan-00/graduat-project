@@ -65,7 +65,7 @@
     transition-duration: 0.2s;
 }
 
-.mypageProfileContainer > button:active {
+.mypageProfileContainer > button:hover {
     border: 1px solid white;
     background-color: gray;
     color: white;
@@ -143,3 +143,12 @@ button.mypageNavBtnActive {
     list-style: none;
 }
 /* 마이페이지 팀 리스트 ul css */
+
+
+/* 비밀번호/닉네임 수정 Modal 창 버튼 css */
+button.modifyButtons {
+    margin-left: 3px;
+    border-radius: 20px;
+    height: 40px;
+}
+/* 비밀번호/닉네임 수정 Modal 창 버튼 css */
