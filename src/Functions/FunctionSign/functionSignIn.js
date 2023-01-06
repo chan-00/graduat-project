@@ -2,7 +2,7 @@ import axios from "axios";
 import server_ip from "../../serverIP";
 
 //로그인 이벤트 발생 시 호출되는 함수로, 로그인 창에 입력한 id와 pw 값을 갖고 DB에 select 문을 요청하는 로그인 함수이다.
-function functionSignIn(idRef, pwRef, navigate) {
+function functionSignIn(idRef, pwRef, navigate, setNickname) {
     if (idRef.current.value.includes("(") || idRef.current.value.includes(")") || idRef.current.value.includes(";")) {
         alert("id에 (, ), ; 값 중 하나 이상이 들어가 있습니다.!");
         idRef.current.focus();
@@ -29,7 +29,7 @@ function functionSignIn(idRef, pwRef, navigate) {
         else if(res.data.login_message === "환영합니다!") {
             alert("로그인 성공!");
             window.sessionStorage.setItem("id", idRef.current.value);
-            window.sessionStorage.setItem("nickname", res.data.return_name[0].user_name);
+            setNickname(res.data.return_name[0].user_name);
             navigate("/");
         }
     }).catch((err) => {

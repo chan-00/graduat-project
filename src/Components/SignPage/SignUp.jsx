@@ -9,8 +9,14 @@ import { useNavigate } from "react-router-dom"
 //import functions
 import functionSignUp from "../../Functions/FunctionSign/functionSignUp";
 import functionIdCheck from "../../Functions/FunctionSign/functionIdCheck";
+//import atom
+import { useSetRecoilState } from "recoil";
+import atomNickname from "../../Atoms/atomNickname";
 
 function SignUp() {
+    //회원가입 시 atom 닉네임 값에 회원가입한 계정의 닉네임을 set 해주기 위한 함수 선언
+    const setNickname = useSetRecoilState(atomNickname);
+
     //회원가입 시 입력되는 데이터의 ref 변수들 선언
     const idRef = useRef();
     const pwRef = useRef();
@@ -41,7 +47,7 @@ function SignUp() {
     //회원가입 버튼 클릭 시 백엔드와 통신하는 함수 호출
     const handleSignUp = (e) => {
         e.preventDefault();
-        functionSignUp(idRef, pwRef, pwCheckRef, nicknameRef, navigate);
+        functionSignUp(idRef, pwRef, pwCheckRef, nicknameRef, navigate, setNickname);
     }
 
     return (

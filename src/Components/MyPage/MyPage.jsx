@@ -14,11 +14,17 @@ import { useNavigate } from "react-router-dom";
 //import functions
 import functionPwdModify from "../../Functions/FunctionModify/functionPwdModify";
 import functionNicknameModify from "../../Functions/FunctionModify/functionNicknameModify";
+//import atom
+import { useRecoilState } from "recoil";
+import atomNickname from "../../Atoms/atomNickname";
 
 
 //마이페이지 영역 컴포넌트
 function MyPage() {
     const navigate = useNavigate();
+
+    //닉네임 atom 값을 가져와 mypage의 profile 부분에 닉네임을 표시해주기 위한 useRecoilState 값
+    const [ nickname, setNickname ] = useRecoilState(atomNickname);
 
     //메뉴 버튼 클릭(Joined Team, Apply Message)에 따라 해당 버튼의 클래스라던지 밑에 출력되는 컴포넌트를 동적으로 조작하기 위한 Boolean useState 변수값 
     const [ clickTeamBtnState, setClickTeamBtnState ] = useState(true);
@@ -36,6 +42,7 @@ function MyPage() {
 
     //마이페이지 첫 렌더링 시 body 태그의 background color를 변경하기 위한 useEffect 작업
     useEffect(() => {
+        /*
         if(window.sessionStorage.id) {
             document.body.style.backgroundColor = "#f8f8fa";
         }
@@ -43,6 +50,8 @@ function MyPage() {
             alert("로그인 되어 있지 않습니다!");
             navigate("/signin");
         }
+        */
+        document.body.style.backgroundColor = "#f8f8fa";
     }, []);
 
     //password edit Modal 창을 켜고 끄는 함수이다.
@@ -69,7 +78,7 @@ function MyPage() {
     //닉네임 수정 Modal창에서 수정 버튼 클릭 시 호출되는 이벤트 함수이다.
     const handleNicknameModify = (e) => {
         e.preventDefault();
-        functionNicknameModify(window.sessionStorage.id, newNicknameRef, handleNicknameModifyModalClose);
+        functionNicknameModify(window.sessionStorage.id, newNicknameRef, handleNicknameModifyModalClose, setNickname);
     }
 
     return (
@@ -78,7 +87,7 @@ function MyPage() {
                 <div className="mypageProfileAllContainer mypageContentsContainer">
                     <div className="mypageProfileContainer">
                         <PersonCircle></PersonCircle>
-                        <span>{window.sessionStorage.nickname}</span>
+                        <span>{nickname}</span>
                         <button onClick={handleNicknameModifyModalShow}>Nickname Edit</button>
                         <button onClick={handlePasswordModifyModalShow}>Password Edit</button>
                     </div>
@@ -148,7 +157,7 @@ function MyPage() {
                                 type="text"
                                 placeholder="새로운 닉네임 입력"
                                 ref={newNicknameRef}
-                                defaultValue={window.sessionStorage.nickname}
+                                defaultValue={nickname}
                                 autoFocus
                                 required
                                 className="formElements inputElements"

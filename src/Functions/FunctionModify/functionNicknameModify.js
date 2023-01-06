@@ -1,7 +1,7 @@
 import axios from "axios";
 import server_ip from "../../serverIP";
 
-function functionNicknameModify(idValue, newNicknameRef, handleNicknameModifyModalClose) {
+function functionNicknameModify(idValue, newNicknameRef, handleNicknameModifyModalClose, setNickname) {
     if (newNicknameRef.current.value.includes("(") || newNicknameRef.current.value.includes(")") || newNicknameRef.current.value.includes(";")) {
         alert("새로운 닉네임 입력값에 (, ), ; 값 중 하나 이상이 들어가 있습니다.!");
         newNicknameRef.current.focus();
@@ -18,7 +18,7 @@ function functionNicknameModify(idValue, newNicknameRef, handleNicknameModifyMod
         }
         else if(res.data.chk_message === "닉네임이 변경되었습니다.") {
             alert("닉네임이 성공적으로 바뀌었습니다!");
-            window.sessionStorage.setItem("nickname", newNicknameRef.current.value);
+            setNickname(newNicknameRef.current.value);
             handleNicknameModifyModalClose();
         }
     }).catch((err) => {

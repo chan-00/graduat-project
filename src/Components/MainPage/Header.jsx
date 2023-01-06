@@ -10,10 +10,16 @@ import "../../css/MainPageCss/Header.css"
 import { useNavigate } from 'react-router-dom';
 //import react hooks
 import { useState } from 'react';
+//import atom
+import { useRecoilState } from "recoil";
+import atomNickname from "../../Atoms/atomNickname";
 
 //페이지 Header 영역을 bootstrap의 Navbar 활용하여 표현
 function Header() {
     const navigate = useNavigate();
+
+    //닉네임 atom 값을 가져와 Navbar의 닉네임 버튼에 적용시키기 위한 useRecoilState 값
+    const [ nickname, setNickname ] = useRecoilState(atomNickname);
 
     //팀 페이지 메뉴 클릭 시 Modal 창을 띄우게 하기 위한 State 상태 관리값
     const [secessionShow, setSecessionShow] = useState(false);
@@ -50,6 +56,7 @@ function Header() {
     //유저 드롭다운 메뉴에서 로그아웃 버튼 클릭 시 호출되는 이벤트 함수이다.
     const handleLogout = () => {
         window.sessionStorage.clear();
+        setNickname("");
         alert("로그아웃 되었습니다!");
         navigate("/");
     }
@@ -87,7 +94,7 @@ function Header() {
                 </Nav>
                 <Nav id="userContainer">
                     {window.sessionStorage.id
-                    ? <NavDropdown title={window.sessionStorage.nickname} id="basic-nav-dropdown">
+                    ? <NavDropdown title={nickname} id="basic-nav-dropdown">
                         <NavDropdown.Item onClick={handleMyPage}>My Page</NavDropdown.Item>
                         <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                     </NavDropdown>

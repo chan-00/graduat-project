@@ -8,8 +8,14 @@ import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom"
 //import functions
 import functionSignIn from "../../Functions/FunctionSign/functionSignIn";
+//import atom
+import { useSetRecoilState } from "recoil";
+import atomNickname from "../../Atoms/atomNickname";
 
 function SignIn() {
+    //로그인 시 atom 닉네임 값에 로그인한 계정의 닉네임을 set 해주기 위한 함수 선언
+    const setNickname = useSetRecoilState(atomNickname);
+
     //로그인 시 입력되는 아이디/비밀번호의 ref 변수들 선언
     const idRef = useRef();
     const pwRef = useRef();
@@ -20,7 +26,7 @@ function SignIn() {
     //로그인 버튼 클릭 시 백엔드와 통신하는 함수 호출
     const handleSignIn = (e) => {
         e.preventDefault();
-        functionSignIn(idRef, pwRef, navigate);
+        functionSignIn(idRef, pwRef, navigate, setNickname);
     }
 
     return (
