@@ -138,13 +138,6 @@ button.mypageNavBtnActive {
 /* 마이페이지의 팀 관련 내용 전체 영역 Container css */
 
 
-/* 마이페이지 팀 리스트 ul css */
-.mypageTeamList {
-    list-style: none;
-}
-/* 마이페이지 팀 리스트 ul css */
-
-
 /* 비밀번호/닉네임 수정 Modal 창 버튼 css */
 button.modifyButtons {
     margin-left: 3px;

@@ -3,6 +3,7 @@ import "../../css/MyPageCss/MyPage.css";
 import "../../css/SignPageCss/Sign.css";
 //import react bootstrap icons
 import { PersonCircle } from "react-bootstrap-icons";
+//import react bootstrap
 import { Button, Modal } from "react-bootstrap";
 //import react hooks
 import { useEffect, useState, useRef } from "react";
