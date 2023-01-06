@@ -82,7 +82,7 @@ function Header() {
     return (
         <div>
             <Navbar bg="dark" expand="lg" variant="dark" id="navContainer">
-                <Navbar.Brand href="/" id="navTitle">Graduat Project</Navbar.Brand>
+                <Navbar.Brand href="/" id="navTitle">Graduate Project</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Nav className="mr-auto">
                     <Nav.Link onClick={handleTeamPageClick}>팀 페이지</Nav.Link>

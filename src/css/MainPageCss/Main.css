@@ -71,12 +71,12 @@
 }
 
 #characterContainer img {
-    width: 300px;
-    height: 700px;
+    width: 400px;
+    height: 600px;
 }
 
 #characterContainer .mainContentsContainer div:first-child {
-    margin-right: 300px;
+    margin-right: 400px;
 }
 /* 백그라운드 색을 gray 색으로 바꾸는 css */
 

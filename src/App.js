@@ -2,6 +2,7 @@
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 //import user component
 import Header from "./Components/MainPage/Header";
+import Footer from "./Components/MainPage/Footer";
 import Main from "./Components/MainPage/Main";
 import SignIn from "./Components/SignPage/SignIn";
 import SignUp from "./Components/SignPage/SignUp";
@@ -29,6 +30,7 @@ function App() {
           <Route path="/questionboard" element={<QuestionBoard></QuestionBoard>}></Route>
           <Route path="/shareboard" element={<ShareBoard></ShareBoard>}></Route>
         </Routes>
+        <Footer></Footer>
       </Router>
     </div>
   )
