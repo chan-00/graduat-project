@@ -56,10 +56,10 @@ function Footer() {
                         박 준<span className="footerDeveloperEmail" style={{marginLeft:"20px"}}>(parkjun436@gmail.com)</span>
                     </p>
                     <p>
-                        김덕윤<span className="footerDeveloperEmail">(응김덕윤)</span>
+                        김덕윤<span className="footerDeveloperEmail">(lldp0506@naver.com)</span>
                     </p>
                     <p>
-                        강형준<span className="footerDeveloperEmail">(응가형준)</span>
+                        강형준<span className="footerDeveloperEmail">(kang6828@naver.com)</span>
                     </p>
                     </MDBCol>
                 </MDBRow>
