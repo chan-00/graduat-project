@@ -22,11 +22,11 @@ function Header() {
     const [ nickname, setNickname ] = useRecoilState(atomNickname);
 
     //팀 페이지 메뉴 클릭 시 Modal 창을 띄우게 하기 위한 State 상태 관리값
-    const [secessionShow, setSecessionShow] = useState(false);
+    const [sessionShow, setSessionShow] = useState(false);
 
     //Modal 창 활성/비활성화를 위한 State 값의 변경 함수
-    const handleSecessionShow = () => setSecessionShow(true);
-    const handleSecessionClose = () => setSecessionShow(false);
+    const handleSessionShow = () => setSessionShow(true);
+    const handleSessionClose = () => setSessionShow(false);
 
     //각각 로그인/회원가입 버튼을 눌렀을 때 호출되는 이벤트 함수로, 로그인과 회원가입 창으로 넘어가게끔 한다.
     const handleLoginShow = () => {
@@ -43,13 +43,23 @@ function Header() {
             navigate("/team");
         }
         else {
-            handleSecessionShow();
+            handleSessionShow();
+        }
+    }
+    //Navbar에서 팀 생성 메뉴를 클릭했을 떄 로그인 여부를 따져 로그인을 하지 않았으면 로그인 페이지로, 로그인을 했으면 팀 페이지로 이동하게끔 한다.
+    //로그인 여부는 session의 id 값이 존재하는지의 여부를 파악한다.
+    const handleTeamMakePageClick = () => {
+        if(window.sessionStorage.id) {
+            navigate("/teammake");
+        }
+        else {
+            handleSessionShow();
         }
     }
 
     //팀 페이지 메뉴 클릭 시 로그인이 되어 있지 않을 때 나오는 Modal 창의 로그인 버튼 클릭 시 호출되는 이벤트 함수이다.
     const handleTeamLoginShow = () => {
-        handleSecessionClose();
+        handleSessionClose();
         handleLoginShow();
     }
 
@@ -65,7 +75,6 @@ function Header() {
     const handleMyPage = () => {
         navigate("/mypage");
     }
-
     //팀 구인 게시판으로 가게 하는 이벤트 함수
     const handleOfferBoard = () => {
         navigate("/offerboard");
@@ -85,6 +94,7 @@ function Header() {
                 <Navbar.Brand href="/" id="navTitle">Graduate Project</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Nav className="mr-auto">
+                    <Nav.Link onClick={handleTeamPageClick}>팀 생성</Nav.Link>
                     <Nav.Link onClick={handleTeamPageClick}>팀 페이지</Nav.Link>
                     <NavDropdown title="게시판" id="basic-nav-dropdown">
                         <NavDropdown.Item onClick={handleOfferBoard}>팀 구인 게시판</NavDropdown.Item>
@@ -104,10 +114,10 @@ function Header() {
                     </div>}
                 </Nav>
             </Navbar>
-            <Modal show={secessionShow} onHide={handleSecessionClose}>
+            <Modal show={sessionShow} onHide={handleSessionClose}>
                 <Modal.Body>현재 로그인이 되어 있지 않습니다. 로그인 하시겠습니까?</Modal.Body>
                 <Modal.Footer>
-                <Button variant="secondary" onClick={handleSecessionClose}>
+                <Button variant="secondary" onClick={handleSessionClose}>
                     취소
                 </Button>
                 <Button variant="primary" onClick={handleTeamLoginShow}>

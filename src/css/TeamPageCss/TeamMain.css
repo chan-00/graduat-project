@@ -1,0 +1,26 @@
+/* team main 페이지의 전체 Container css */
+#teamMainAllContainer {
+    height: 100vh;
+}
+/* team main 페이지의 전체 Container css */
+
+
+/* team main 페이지의 메인 Contents(내가 속한 팀 리스트) Container css */
+#teamMainContentsContainer {
+    width: 70%;
+    margin: 30px auto 20px;
+}
+
+#teamMainContentsContainer svg {
+    font-size: 25px;
+    margin-right: 10px;
+}
+/* team main 페이지의 메인 Contents(내가 속한 팀 리스트) Container css */
+
+
+/* pagination 페이지 번호 버튼 리스트 css */
+#paginationContainer {
+    justify-content: center;
+    margin-top: 60px;
+}
+/* pagination 페이지 번호 버튼 리스트 css */

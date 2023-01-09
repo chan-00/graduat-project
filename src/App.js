@@ -8,6 +8,7 @@ import SignIn from "./Components/SignPage/SignIn";
 import SignUp from "./Components/SignPage/SignUp";
 import MyPage from "./Components/MyPage/MyPage";
 import TeamMain from "./Components/TeamPage/TeamMain";
+import TeamMake from "./Components/TeamPage/TeamMake";
 import OfferBoard from "./Components/BoardPage/OfferBoard";
 import QuestionBoard from "./Components/BoardPage/QuestionBoard";
 import ShareBoard from "./Components/BoardPage/ShareBoard";
@@ -26,6 +27,7 @@ function App() {
           <Route path="/signup" element={<SignUp></SignUp>}></Route>
           <Route path="/mypage" element={<MyPage></MyPage>}></Route>
           <Route path="/team" element={<TeamMain></TeamMain>}></Route>
+          <Route path="/teammake" element={<TeamMake></TeamMake>}></Route>
           <Route path="/offerboard" element={<OfferBoard></OfferBoard>}></Route>
           <Route path="/questionboard" element={<QuestionBoard></QuestionBoard>}></Route>
           <Route path="/shareboard" element={<ShareBoard></ShareBoard>}></Route>
