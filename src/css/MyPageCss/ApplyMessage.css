@@ -1,15 +1,5 @@
-/* Apply Message 전체 영역을 감싸는 Container css */
-#applyMessageAllContainer {
-    height: 90%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 50px 1fr;
-}
-/* Apply Message 전체 영역을 감싸는 Container css */
-
-
 /* Apply 영역의 제목 css */
-#applyMessageAllContainer > h3 {
+.mypageTeamContentsContainer > h3 {
     margin-top: 20px;
     margin-left: 40px;
     font-size: 25px;
@@ -17,115 +7,97 @@
 /* Apply 영역의 제목 css */
 
 
-/* 팀을 신청한 기록의 Container css */
-#applyMessageContainer {
-    background-color: #f8f8fa;
-    width: 90%;
-    height: 90%;
-    border-radius: 10px;
-
-    margin: 20px auto;
-    overflow: auto;
-}
-/* 팀을 신청한 기록의 Container css */
-
-
-/* 팀을 신청받은 기록의 Container css */
+/* Applied 메시지 컨테이너 css */
 #appliedMessageContainer {
+    height: 70%;
+    width: 95%;
     background-color: #f8f8fa;
-    width: 90%;
-    height: 90%;
+    margin: 20px auto 0;
     border-radius: 10px;
 
-    margin: 30px auto;
     overflow: auto;
+    white-space: nowrap;
 }
-
-#appliedMessageContainer svg {
-    font-size: 30px;
-}
-/* 팀을 신청받은 기록의 Container css */
+/* Applied 메시지 컨테이너 css */
 
 
-/* 요청받은 기록 하나하나에 대한 Container css */
-.appliedContents {
-    padding: 20px 30px;
-}
-
-.appliedContents span {
-    font-size: 13px;
-    margin-left: 10px;
-}
-/* 요청받은 기록 하나하나에 대한 Container css */
-
-
-/* 수락/거절 버튼에 대한 css */
-.appliedBtn {
-    float: right;
-    font-size: 13px;
-    margin-right: 10px;
-}
-/* 수락/거절 버튼에 대한 css */
-
-
-/* Apply 기록의 각 Contents들에 대한 Container css */
-.applyContents {
-    width: 500px;
-    height: 50px;
-    background-color: powderblue;
-    margin: 30px auto;
-    border-radius: 10px;
-    padding-left: 20px;
-    padding-top: 13px;
-}
-/* Apply 기록의 각 Contents들에 대한 Container css */
-
-
-/* 말풍선 모양 css */
-.bubble {
-    position: relative;
-    width: 400px;
-    height: 50px;
-    line-height: 30px;
-    padding: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    display: inline-block;
-    margin-left: 20px;
-
-    background-color: white;
-}
-
-.bubble:after {
-    content: '';
-    position: absolute;
-    border-style: solid;
-    border-width: 8px 15px 8px 0;
-    border-color: transparent white;
-    display: block;
-    width: 0;
-    z-index: 1;
-    left: -15px;
-    top: 17px;
-}
-
-.bubble > button {
-    height: 30px;
-    font-size: 13px;
-    border-radius: 10px;
-}
-/* 말풍선 모양 css */
-
-
-/* Apply/Applied 기록이 없을 때의 아이콘 */
+/* 신청 기록이 없을 때 표시할 메시지에 대한 css */
 .noneAppliedIcon {
-    text-align: center;
+    font-size: 30px;
     color: gray;
+    text-align: center;
     padding-top: 150px;
 }
+/* 신청 기록이 없을 때 표시할 메시지에 대한 css */
 
-.noneAppliedIcon > p {
-    font-size: 30px;
+
+/* 팀 신청을 넣은 유저에 대한 정보를 담을 Card Container css */
+.cardContainer {
+    display: inline-block;
+    height: 100%;
+    text-align: center;
+
+    white-space: normal;
 }
-/* Apply/Applied 기록이 없을 때의 아이콘 */
+
+.cardContainer img {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.cardContainer > .card {
+    height: 80%;
+    width: 200px;
+    margin-top: 40px;
+    margin-left: 40px;
+}
+
+.cardContainer button {
+    font-size: 13px;
+    background-color: inherit;
+    border-radius: 10px;
+    padding: 5px 15px;
+}
+
+.cardContainer p {
+    margin: 10px 0 10px;
+    font-size: 15px;
+}
+/* 팀 신청을 넣은 유저에 대한 정보를 담을 Card Container css */
+
+
+/* 팀 신청 유저에 대한 승인/거절 버튼 css */
+.outlintPrimary {
+    border: 1px solid blue;
+    color: blue;
+    margin-right: 10px;
+}
+
+.outlintPrimary:hover {
+    background-color: blue;
+    color: white;
+    transition-duration: 0.2s;
+}
+
+.outlintDanger {
+    border: 1px solid red;
+    color: red;
+}
+
+.outlintDanger:hover {
+    background-color: red;
+    color: white;
+    transition-duration: 0.2s;
+}
+/* 팀 신청 유저에 대한 승인/거절 버튼 css */
+
+
+/* 유저 Email Text css */
+.userEmail {
+    font-size: 13px;
+    color: gray;
+    display: inline-block;
+    margin-bottom: 30px;
+}
+/* 유저 Email Text css */
