@@ -14,14 +14,6 @@
     margin-left: 40px;
     font-size: 25px;
 }
-
-#applyMessageAllContainer > h3:first-child {
-    
-}
-
-#applyMessageAllContainer > h3:last-child {
-    
-}
 /* Apply 영역의 제목 css */
 
 
@@ -70,7 +62,6 @@
 /* 수락/거절 버튼에 대한 css */
 .appliedBtn {
     float: right;
-    border-radius: 10px;
     font-size: 13px;
     margin-right: 10px;
 }
@@ -117,6 +108,12 @@
     z-index: 1;
     left: -15px;
     top: 17px;
+}
+
+.bubble > button {
+    height: 30px;
+    font-size: 13px;
+    border-radius: 10px;
 }
 /* 말풍선 모양 css */
 

@@ -37,7 +37,6 @@ function ApplyMessage() {
                 </div>
             </div>
             <div id="appliedMessageContainer">
-                {/*
                 <div className="appliedContents">
                     <PersonCircle></PersonCircle>
                     <div className="bubble">
@@ -70,10 +69,11 @@ function ApplyMessage() {
                         <Button variant="outline-primary" className="appliedBtn">수락</Button>
                     </div>
                 </div>
-                */}
+                {/*
                 <div className="noneAppliedIcon">
                     <p>None history....</p>
                 </div>
+                */}
             </div>
         </div>
     )

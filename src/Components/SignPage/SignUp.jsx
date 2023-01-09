@@ -21,6 +21,7 @@ function SignUp() {
     const idRef = useRef();
     const pwRef = useRef();
     const pwCheckRef = useRef();
+    const emailRef = useRef();
     const nicknameRef = useRef();
     //아이디 중복 버튼으로 아이디 중복 여부를 검사해야 회원가입 버튼을 누를 수 있도록 회원가입 버튼에 연결할 useRef 변수
     const signupRef = useRef();
@@ -47,7 +48,7 @@ function SignUp() {
     //회원가입 버튼 클릭 시 백엔드와 통신하는 함수 호출
     const handleSignUp = (e) => {
         e.preventDefault();
-        functionSignUp(idRef, pwRef, pwCheckRef, nicknameRef, navigate, setNickname);
+        functionSignUp(idRef, pwRef, pwCheckRef, emailRef, nicknameRef, navigate, setNickname);
     }
 
     return (
@@ -83,6 +84,15 @@ function SignUp() {
                         type="password"
                         placeholder="비밀번호 확인"
                         ref={pwCheckRef}
+                        required
+                        className="formElements inputElements"
+                    />
+                </div>
+                <div>
+                    <input
+                        type="email"
+                        placeholder="이메일 입력"
+                        ref={emailRef}
                         required
                         className="formElements inputElements"
                     />

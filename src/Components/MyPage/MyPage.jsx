@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 //import functions
 import functionPwdModify from "../../Functions/FunctionModify/functionPwdModify";
 import functionNicknameModify from "../../Functions/FunctionModify/functionNicknameModify";
+import functionEmailModify from "../../Functions/FunctionModify/functionEmailModify";
 //import atom
 import { useRecoilState } from "recoil";
 import atomNickname from "../../Atoms/atomNickname";
@@ -22,25 +23,6 @@ import atomNickname from "../../Atoms/atomNickname";
 
 //마이페이지 영역 컴포넌트
 function MyPage() {
-    const navigate = useNavigate();
-
-    //닉네임 atom 값을 가져와 mypage의 profile 부분에 닉네임을 표시해주기 위한 useRecoilState 값
-    const [ nickname, setNickname ] = useRecoilState(atomNickname);
-
-    //메뉴 버튼 클릭(Joined Team, Apply Message)에 따라 해당 버튼의 클래스라던지 밑에 출력되는 컴포넌트를 동적으로 조작하기 위한 Boolean useState 변수값 
-    const [ clickTeamBtnState, setClickTeamBtnState ] = useState(true);
-    //password edit 버튼 클릭 시 비밀번호 수정을 할 수 있는 Modal 창을 띄우게 하도록 하는 Boolean useState 변수
-    const [ passwordModifyModalShow, setPasswordModifyModalShow ] = useState(false);
-    //nickname edit 버튼 클릭 시 닉네임 수정을 할 수 있는 Modal 창을 띄우게 하도록 하는 Boolean useState 변수
-    const [ nicknameModifyModalShow, setNicknameModifyModalShow ] = useState(false);
-
-    //기존 비밀번호 입력 input에 대한 useRef 변수
-    const pwRef = useRef();
-    //새로운 비밀번호 입력 input에 대한 useRef 변수
-    const newPwRef = useRef();
-    //새로운 닉네임 입력 input에 대한 useRef 변수
-    const newNicknameRef = useRef();
-
     //마이페이지 첫 렌더링 시 body 태그의 background color를 변경하기 위한 useEffect 작업
     useEffect(() => {
         /*
@@ -53,7 +35,33 @@ function MyPage() {
         }
         */
         document.body.style.backgroundColor = "#f8f8fa";
+        return () => {
+            document.body.style.backgroundColor = "#ffffff";
+        }
     }, []);
+
+    const navigate = useNavigate();
+
+    //닉네임 atom 값을 가져와 mypage의 profile 부분에 닉네임을 표시해주기 위한 useRecoilState 값
+    const [ nickname, setNickname ] = useRecoilState(atomNickname);
+
+    //메뉴 버튼 클릭(Joined Team, Apply Message)에 따라 해당 버튼의 클래스라던지 밑에 출력되는 컴포넌트를 동적으로 조작하기 위한 Boolean useState 변수값 
+    const [ clickTeamBtnState, setClickTeamBtnState ] = useState(true);
+    //password edit 버튼 클릭 시 비밀번호 수정을 할 수 있는 Modal 창을 띄우게 하도록 하는 Boolean useState 변수
+    const [ passwordModifyModalShow, setPasswordModifyModalShow ] = useState(false);
+    //nickname edit 버튼 클릭 시 닉네임 수정을 할 수 있는 Modal 창을 띄우게 하도록 하는 Boolean useState 변수
+    const [ nicknameModifyModalShow, setNicknameModifyModalShow ] = useState(false);
+    //email edit 버튼 클릭 시 닉네임 수정을 할 수 있는 Modal 창을 띄우게 하도록 하는 Boolean useState 변수
+    const [ emailModifyModalShow, setEmailModifyModalShow ] = useState(false);
+
+    //기존 비밀번호 입력 input에 대한 useRef 변수
+    const pwRef = useRef();
+    //새로운 비밀번호 입력 input에 대한 useRef 변수
+    const newPwRef = useRef();
+    //새로운 닉네임 입력 input에 대한 useRef 변수
+    const newNicknameRef = useRef();
+    //새로운 이메일 입력 input에 대한 useRef 변수
+    const newEmailRef = useRef();
 
     //password edit Modal 창을 켜고 끄는 함수이다.
     const handlePasswordModifyModalShow = () => setPasswordModifyModalShow(true);
@@ -61,6 +69,9 @@ function MyPage() {
     //nickname edit Modal 창을 켜고 끄는 함수이다.
     const handleNicknameModifyModalShow = () => setNicknameModifyModalShow(true);
     const handleNicknameModifyModalClose = () => setNicknameModifyModalShow(false);
+    //email edit Modal 창을 켜고 끄는 함수이다.
+    const handleEmailModifyModalShow = () => setEmailModifyModalShow(true);
+    const handleEmailModifyModalClose = () => setEmailModifyModalShow(false);
 
     //Nav에서 Joined Team 버튼 클릭 시 호출되는 이벤트 함수이다.
     const handleJoinTeamClick = () => {
@@ -81,6 +92,11 @@ function MyPage() {
         e.preventDefault();
         functionNicknameModify(window.sessionStorage.id, newNicknameRef, handleNicknameModifyModalClose, setNickname);
     }
+    //이메일 수정 Modal창에서 수정 버튼 클릭 시 호출되는 이벤트 함수이다.
+    const handleEmailModify = (e) => {
+        e.preventDefault();
+        functionEmailModify(window.sessionStorage.id, newEmailRef, handleEmailModifyModalClose);
+    }
 
     return (
         <div className="mypageAllContainer">
@@ -89,6 +105,7 @@ function MyPage() {
                     <div className="mypageProfileContainer">
                         <PersonCircle></PersonCircle>
                         <span>{nickname}</span>
+                        <button onClick={handleEmailModifyModalShow}>email Edit</button>
                         <button onClick={handleNicknameModifyModalShow}>Nickname Edit</button>
                         <button onClick={handlePasswordModifyModalShow}>Password Edit</button>
                     </div>
@@ -168,6 +185,30 @@ function MyPage() {
                         <div className="signButtonContainer" style={{marginTop:"20px"}}>
                             <Button type="submit" variant="outline-primary" className="modifyButtons" style={{fontSize:"13px"}}>닉네임 수정</Button>
                             <Button variant="outline-danger" className="modifyButtons" style={{marginLeft:"10px", fontSize:"13px"}} onClick={handleNicknameModifyModalClose}>취소</Button>
+                        </div>
+                    </form>
+                </Modal.Body>
+            </Modal>
+            <Modal show={emailModifyModalShow} onHide={handleEmailModifyModalClose}>
+                <Modal.Header closeButton>
+                    <h4>Email Change</h4>
+                </Modal.Header>
+                <Modal.Body>
+                    <form className="signContainer" onSubmit={handleEmailModify}>
+                        <div>
+                            <input
+                                type="email"
+                                placeholder="변경할 이메일 입력"
+                                ref={newEmailRef}
+                                autoFocus
+                                required
+                                className="formElements inputElements"
+                                style={{marginBottom:"10px", borderRadius:"5px"}}
+                            />
+                        </div>
+                        <div className="signButtonContainer" style={{marginTop:"20px"}}>
+                            <Button type="submit" variant="outline-primary" className="modifyButtons" style={{fontSize:"13px"}}>이메일 수정</Button>
+                            <Button variant="outline-danger" className="modifyButtons" style={{marginLeft:"10px", fontSize:"13px"}} onClick={handleEmailModifyModalClose}>취소</Button>
                         </div>
                     </form>
                 </Modal.Body>
