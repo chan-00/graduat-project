@@ -15,6 +15,10 @@
     font-size: 25px;
     margin-right: 10px;
 }
+
+#teamMainContentsContainer tr:hover {
+    background-color: #f8f8fa;
+}
 /* team main 페이지의 메인 Contents(내가 속한 팀 리스트) Container css */
 
 

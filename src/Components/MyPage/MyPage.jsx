@@ -119,7 +119,7 @@ function MyPage() {
                 <div className="mypageTeamAllContainer mypageContentsContainer">
                     <div className="mypageNavContainer">
                         <button className={clickTeamBtnState ? 'mypageNavBtnActive' : null} onClick={handleJoinTeamClick}>Joined Team</button>
-                        <button className={clickTeamBtnState ? null : 'mypageNavBtnActive'} onClick={handleApplyMessageClick}>Apply Message</button>
+                        <button className={clickTeamBtnState ? null : 'mypageNavBtnActive'} onClick={handleApplyMessageClick}>Applied Message</button>
                     </div>
                     <hr></hr>
                     <div className="mypageTeamContentsContainer">

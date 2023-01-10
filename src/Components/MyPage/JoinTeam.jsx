@@ -7,8 +7,8 @@ import "../../css/MyPageCss/JoinTeam.css";
 
 function JoinTeam() {
     return (
-        <div className="mypageTeamContainer">
-            {/*   가입된 팀이 있을 때의 디자인
+        <div className="mypageTeamContainer"> 
+            {/*   가입된 팀이 있을 때의 디자인  */}
             <ul className="mypageTeamList">
                 <li>JavaScript 스터디<span>3/8</span></li>
                 <li>Django 스터디<span>2/8</span></li>
@@ -53,12 +53,14 @@ function JoinTeam() {
                 </div>
                 <Button variant="outline-secondary" className="mypageTeamMemberFooter">JavaScript 스터디 페이지로 이동</Button>
             </div>
-            */}
+            
+            {/*   가입된 팀이 없을 때의 디자인  */}
+            {/*
             <div id="mypageNoneTeamMessageContainer">
                 <EmojiFrown></EmojiFrown>
                 <p>가입되어 있는 팀이 없습니다......</p>
             </div>
-            
+            */}
         </div>
     )
 }
