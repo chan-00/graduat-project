@@ -18,6 +18,7 @@ function functionNicknameModify(idValue, newNicknameRef, handleNicknameModifyMod
         }
         else if(res.data.chk_message === "닉네임이 변경되었습니다.") {
             alert("닉네임이 성공적으로 바뀌었습니다!");
+            window.sessionStorage.setItem("nickname", newNicknameRef.current.value);
             setNickname(newNicknameRef.current.value);
             handleNicknameModifyModalClose();
         }

@@ -57,14 +57,21 @@ function functionSignUp(idRef, pwRef, pwCheckRef, emailRef, nicknameRef, navigat
             //아이디/닉네임 중복이라는 데이터 받을 때 alert 창으로 알려 준다.
             if(res.data.chk_message === "아이디 중복입니다.") {
                 alert("아이디의 중복 여부를 다시 확인해주세요.");
+                idRef.current.focus();
             }
             else if(res.data.chk_message === "닉네임 중복입니다.") {
                 alert("이미 존재하는 닉네임입니다.");
+                nicknameRef.current.focus();
+            }
+            else if(res.data.chk_message === "이메일 중복입니다.") {
+                alert("이미 존재하는 이메일입니다.");
+                emailRef.current.focus();
             }
             //위의 두 조건에 걸리지 않는다면 회원가입 성공 메시지를 띄우고 session storage에 id 값을 부여한다.
             else {
                 alert("회원가입 성공!");
                 window.sessionStorage.setItem("id", idRef.current.value);
+                window.sessionStorage.setItem("nickname", nicknameRef.current.value);
                 setNickname(nicknameRef.current.value);
                 navigate("/");
             }

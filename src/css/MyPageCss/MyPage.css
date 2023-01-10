@@ -51,6 +51,13 @@
     vertical-align: middle;
 }
 
+.mypageProfileContainer > #userEmailText {
+    font-size: 15px;
+    color: gray;
+    display: inline-block;
+    margin-top: 6px;
+}
+
 .mypageProfileContainer > button {
     float: right;
     margin-top: 5px;
@@ -75,7 +82,7 @@
 
 /* 프로필의 유저 컨텐츠 Container css */
 .mypageUserContentsListContainer {
-    margin-top: 50px;
+    margin-top: 30px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
@@ -145,3 +152,27 @@ button.modifyButtons {
     height: 40px;
 }
 /* 비밀번호/닉네임 수정 Modal 창 버튼 css */
+
+
+/* User Comments Container css */
+#userCommentsContainer {
+    margin-top: 20px;
+}
+
+#userCommentsContainer button {
+    background-color: inherit;
+    border: 1px solid gray;
+    border-radius: 20px;
+    padding: 0 5px;
+    font-size: 13px;
+    margin-left: 10px;
+
+    transition-duration: 0.2s;
+}
+
+#userCommentsContainer button:hover {
+    border: 1px solid white;
+    background-color: gray;
+    color: white;
+}
+/* User Comments Container css */

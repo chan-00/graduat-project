@@ -61,6 +61,7 @@ function SignUp() {
                         type="text"
                         placeholder="아이디 입력"
                         ref={idRef}
+                        maxLength="12"
                         autoFocus
                         required
                         className="formElements inputElements"
@@ -75,6 +76,7 @@ function SignUp() {
                         type="password"
                         placeholder="비밀번호 입력"
                         ref={pwRef}
+                        maxLength="20"
                         required
                         className="formElements inputElements"
                     />
@@ -84,6 +86,7 @@ function SignUp() {
                         type="password"
                         placeholder="비밀번호 확인"
                         ref={pwCheckRef}
+                        maxLength="20"
                         required
                         className="formElements inputElements"
                     />
@@ -93,6 +96,7 @@ function SignUp() {
                         type="email"
                         placeholder="이메일 입력"
                         ref={emailRef}
+                        maxLength="30"
                         required
                         className="formElements inputElements"
                     />
@@ -102,6 +106,7 @@ function SignUp() {
                         type="text"
                         placeholder="닉네임 입력"
                         ref={nicknameRef}
+                        maxLength="20"
                         required
                         className="formElements inputElements"
                     />

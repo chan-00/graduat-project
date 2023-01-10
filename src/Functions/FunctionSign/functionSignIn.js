@@ -29,6 +29,7 @@ function functionSignIn(idRef, pwRef, navigate, setNickname) {
         else if(res.data.login_message === "환영합니다!") {
             alert("로그인 성공!");
             window.sessionStorage.setItem("id", idRef.current.value);
+            window.sessionStorage.setItem("nickname", res.data.return_name[0].user_name);
             setNickname(res.data.return_name[0].user_name);
             navigate("/");
         }

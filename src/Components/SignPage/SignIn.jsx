@@ -39,6 +39,7 @@ function SignIn() {
                         type="text"
                         placeholder="아이디 입력"
                         ref={idRef}
+                        maxLength="12"
                         autoFocus
                         required
                         className="formElements inputElements"
@@ -49,6 +50,7 @@ function SignIn() {
                         type="password"
                         placeholder="비밀번호 입력"
                         ref={pwRef}
+                        maxLength="20"
                         required
                         className="formElements inputElements"
                     />

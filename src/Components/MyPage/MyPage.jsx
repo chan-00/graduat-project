@@ -13,9 +13,11 @@ import ApplyMessage from "./ApplyMessage";
 //import react router
 import { useNavigate } from "react-router-dom";
 //import functions
+import functionUserInfo from "../../Functions/FunctionMyPage/functionUserInfo";
 import functionPwdModify from "../../Functions/FunctionModify/functionPwdModify";
 import functionNicknameModify from "../../Functions/FunctionModify/functionNicknameModify";
 import functionEmailModify from "../../Functions/FunctionModify/functionEmailModify";
+import functionCommentsModify from "../../Functions/FunctionModify/functionCommentsModify";
 //import atom
 import { useRecoilState } from "recoil";
 import atomNickname from "../../Atoms/atomNickname";
@@ -23,23 +25,7 @@ import atomNickname from "../../Atoms/atomNickname";
 
 //마이페이지 영역 컴포넌트
 function MyPage() {
-    //마이페이지 첫 렌더링 시 body 태그의 background color를 변경하기 위한 useEffect 작업
-    useEffect(() => {
-        /*
-        if(window.sessionStorage.id) {
-            document.body.style.backgroundColor = "#f8f8fa";
-        }
-        else {
-            alert("로그인 되어 있지 않습니다!");
-            navigate("/signin");
-        }
-        */
-        document.body.style.backgroundColor = "#f8f8fa";
-        return () => {
-            document.body.style.backgroundColor = "#ffffff";
-        }
-    }, []);
-
+    //페이지 전환을 위한 useNavigate 변수
     const navigate = useNavigate();
 
     //닉네임 atom 값을 가져와 mypage의 profile 부분에 닉네임을 표시해주기 위한 useRecoilState 값
@@ -53,6 +39,12 @@ function MyPage() {
     const [ nicknameModifyModalShow, setNicknameModifyModalShow ] = useState(false);
     //email edit 버튼 클릭 시 닉네임 수정을 할 수 있는 Modal 창을 띄우게 하도록 하는 Boolean useState 변수
     const [ emailModifyModalShow, setEmailModifyModalShow ] = useState(false);
+    //Comments edit 버튼 클릭 시 코멘트 수정을 할 수 있는 Modal 창을 띄우게 하도록 하는 Boolean useState 변수
+    const [ commentsModifyModalShow, setCommentsModifyModalShow ] = useState(false);
+    //user comments 값을 담고 있을 useState 변수
+    const [ userComments, setUserComments ] = useState("");
+    //user email 값을 담고 있을 useState 변수
+    const [ userEmail, setUserEmail ] = useState("");
 
     //기존 비밀번호 입력 input에 대한 useRef 변수
     const pwRef = useRef();
@@ -62,6 +54,23 @@ function MyPage() {
     const newNicknameRef = useRef();
     //새로운 이메일 입력 input에 대한 useRef 변수
     const newEmailRef = useRef();
+    //새로운 코멘트 입력 input에 대한 useRef 변수
+    const newCommentsRef = useRef();
+
+    //마이페이지 첫 렌더링 시 body 태그의 background color를 변경하기 위한 useEffect 작업
+    useEffect(() => {
+        if(window.sessionStorage.id) {
+            document.body.style.backgroundColor = "#f8f8fa";
+            functionUserInfo(window.sessionStorage.id, setUserEmail, setUserComments);
+        }
+        else {
+            alert("로그인 되어 있지 않습니다!");
+            navigate("/signin");
+        }
+        return () => {
+            document.body.style.backgroundColor = "#ffffff";
+        }
+    }, []);
 
     //password edit Modal 창을 켜고 끄는 함수이다.
     const handlePasswordModifyModalShow = () => setPasswordModifyModalShow(true);
@@ -72,6 +81,9 @@ function MyPage() {
     //email edit Modal 창을 켜고 끄는 함수이다.
     const handleEmailModifyModalShow = () => setEmailModifyModalShow(true);
     const handleEmailModifyModalClose = () => setEmailModifyModalShow(false);
+    //comments edit Modal 창을 켜고 끄는 함수이다.
+    const handleCommentsModifyModalShow = () => setCommentsModifyModalShow(true);
+    const handleCommentsModifyModalClose = () => setCommentsModifyModalShow(false);
 
     //Nav에서 Joined Team 버튼 클릭 시 호출되는 이벤트 함수이다.
     const handleJoinTeamClick = () => {
@@ -95,7 +107,12 @@ function MyPage() {
     //이메일 수정 Modal창에서 수정 버튼 클릭 시 호출되는 이벤트 함수이다.
     const handleEmailModify = (e) => {
         e.preventDefault();
-        functionEmailModify(window.sessionStorage.id, newEmailRef, handleEmailModifyModalClose);
+        functionEmailModify(window.sessionStorage.id, newEmailRef, handleEmailModifyModalClose, setUserEmail);
+    }
+    //코멘트 수정 Modal창에서 수정 버튼 클릭 시 호출되는 이벤트 함수이다.
+    const handleCommentsModify = (e) => {
+        e.preventDefault();
+        functionCommentsModify(window.sessionStorage.id, newCommentsRef, handleCommentsModifyModalClose, setUserComments);
     }
 
     return (
@@ -104,10 +121,15 @@ function MyPage() {
                 <div className="mypageProfileAllContainer mypageContentsContainer">
                     <div className="mypageProfileContainer">
                         <PersonCircle></PersonCircle>
-                        <span>{nickname}</span>
+                        <span>{window.sessionStorage.nickname}</span>
+                        <span id="userEmailText">{userEmail}</span>
                         <button onClick={handleEmailModifyModalShow}>email Edit</button>
                         <button onClick={handleNicknameModifyModalShow}>Nickname Edit</button>
                         <button onClick={handlePasswordModifyModalShow}>Password Edit</button>
+                        <div id="userCommentsContainer">
+                            {userComments}
+                            <button onClick={handleCommentsModifyModalShow}>Edit</button>
+                        </div>
                     </div>
                     <hr></hr>
                     <div className="mypageUserContentsListContainer">
@@ -141,6 +163,7 @@ function MyPage() {
                                 type="password"
                                 placeholder="기존 비밀번호 입력"
                                 ref={pwRef}
+                                maxLength="20"
                                 autoFocus
                                 required
                                 className="formElements inputElements"
@@ -152,6 +175,7 @@ function MyPage() {
                                 type="password"
                                 placeholder="새로운 비밀번호 입력"
                                 ref={newPwRef}
+                                maxLength="20"
                                 required
                                 className="formElements inputElements"
                                 style={{borderRadius:"5px"}}
@@ -175,6 +199,7 @@ function MyPage() {
                                 type="text"
                                 placeholder="새로운 닉네임 입력"
                                 ref={newNicknameRef}
+                                maxLength="20"
                                 defaultValue={nickname}
                                 autoFocus
                                 required
@@ -200,6 +225,7 @@ function MyPage() {
                                 type="email"
                                 placeholder="변경할 이메일 입력"
                                 ref={newEmailRef}
+                                maxLength="30"
                                 autoFocus
                                 required
                                 className="formElements inputElements"
@@ -209,6 +235,33 @@ function MyPage() {
                         <div className="signButtonContainer" style={{marginTop:"20px"}}>
                             <Button type="submit" variant="outline-primary" className="modifyButtons" style={{fontSize:"13px"}}>이메일 수정</Button>
                             <Button variant="outline-danger" className="modifyButtons" style={{marginLeft:"10px", fontSize:"13px"}} onClick={handleEmailModifyModalClose}>취소</Button>
+                        </div>
+                    </form>
+                </Modal.Body>
+            </Modal>
+            <Modal show={commentsModifyModalShow} onHide={handleCommentsModifyModalClose}>
+                <Modal.Header closeButton>
+                    <h4>Comment Change</h4>
+                </Modal.Header>
+                <Modal.Body>
+                    <form className="signContainer" onSubmit={handleCommentsModify}>
+                        <div>
+                            <input
+                                type="text"
+                                placeholder="변경할 코멘트 입력"
+                                ref={newCommentsRef}
+                                maxLength="400"
+                                defaultValue={userComments}
+                                spellCheck="false"
+                                autoFocus
+                                required
+                                className="formElements inputElements"
+                                style={{marginBottom:"10px", borderRadius:"5px"}}
+                            />
+                        </div>
+                        <div className="signButtonContainer" style={{marginTop:"20px"}}>
+                            <Button type="submit" variant="outline-primary" className="modifyButtons" style={{fontSize:"13px"}}>코멘트 수정</Button>
+                            <Button variant="outline-danger" className="modifyButtons" style={{marginLeft:"10px", fontSize:"13px"}} onClick={handleCommentsModifyModalClose}>취소</Button>
                         </div>
                     </form>
                 </Modal.Body>
