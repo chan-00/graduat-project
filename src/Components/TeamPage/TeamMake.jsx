@@ -24,7 +24,7 @@ function TeamMake() {
     //팀 생성 버튼 클릭 시 호출되는 이벤트 함수
     const handleTeamMake = (e) => {
         e.preventDefault();
-        functionTeamMake(teamnameRef, teamDescRef, teamCategory, navigate);
+        functionTeamMake(window.sessionStorage.id, teamnameRef, teamDescRef, teamCategory, navigate);
     }
     //팀 카테고리 select box 값이 바뀔 때 호출되는 이벤트 함수
     const handleChangeCategory = (e) => {
@@ -48,6 +48,7 @@ function TeamMake() {
                                 type="text"
                                 placeholder="Input team name"
                                 ref={teamnameRef}
+                                maxLength="100"
                                 autoFocus
                                 required
                                 className="formElements inputElements"
@@ -59,6 +60,7 @@ function TeamMake() {
                                 type="text"
                                 placeholder="Description"
                                 ref={teamDescRef}
+                                maxLength="400"
                                 className="formElements inputElements"
                             />
                         </div>

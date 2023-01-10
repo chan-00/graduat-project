@@ -8,9 +8,9 @@
 
 /* 팀 생성 화면의 전체를 감싸는 Container css */
 #teammakeAllContainer {
-    width: 50%;
+    width: 1200px;
     height: 600px;
-    margin: 200px auto 0;
+    margin: 150px auto 0;
     background-color: #f8f8fa;
 
     display: grid;
