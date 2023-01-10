@@ -1,8 +1,16 @@
+/* 팀 생성 화면 body css */
+#teammakeBody {
+    width: 100vw;
+    height: 100vh;
+}
+/* 팀 생성 화면 body css */
+
+
 /* 팀 생성 화면의 전체를 감싸는 Container css */
 #teammakeAllContainer {
     width: 50%;
     height: 600px;
-    margin: 100px auto;
+    margin: 200px auto 0;
     background-color: #f8f8fa;
 
     display: grid;

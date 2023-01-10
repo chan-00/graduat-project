@@ -49,8 +49,7 @@
 .cardContainer > .card {
     height: 80%;
     width: 200px;
-    margin-top: 40px;
-    margin-left: 40px;
+    margin: 40px 40px 0;
 }
 
 .cardContainer button {
@@ -98,6 +97,14 @@
     font-size: 13px;
     color: gray;
     display: inline-block;
-    margin-bottom: 30px;
 }
 /* 유저 Email Text css */
+
+
+/* 유저 Applied Team css */
+.userAppliedStudy {
+    font-size: 13px;
+    display: inline-block;
+    margin: 10px 0;
+}
+/* 유저 Applied Team css */

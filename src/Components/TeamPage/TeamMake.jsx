@@ -32,49 +32,51 @@ function TeamMake() {
     }
 
     return (
-        <div id="teammakeAllContainer">
-            <div id="teammakeImageContainer">
-                <h3>Welcome!</h3>
-                <span>팀을 생성하고 언제 어디서나 자유롭게 스터디하세요</span>
-            </div>
-            <div id="teammakeContentsContainer">
-                <h3>Create Team</h3>
-                <hr></hr>
-                <form className="teamMakeContainer" onSubmit={handleTeamMake}>
-                    <h4>Team Name</h4>
-                    <div>
-                        <input
-                            type="text"
-                            placeholder="Input team name"
-                            ref={teamnameRef}
-                            autoFocus
-                            required
-                            className="formElements inputElements"
-                        />
-                    </div>
-                    <h4>Description</h4>
-                    <div>
-                        <input
-                            type="text"
-                            placeholder="Description"
-                            ref={teamDescRef}
-                            className="formElements inputElements"
-                        />
-                    </div>
-                    <h4>Select Category</h4>
-                    <div>
-                        <select onChange={handleChangeCategory}>
-                            <option value="국어">국어</option>
-                            <option value="수학">수학</option>
-                            <option value="언어">언어</option>
-                            <option value="IT">IT</option>
-                            <option value="과학">과학</option>
-                        </select>
-                    </div>
-                    <div className="makeButtonContainer">
-                        <Button type="submit" variant="primary" className="formElements">팀 생성</Button>
-                    </div>
-            </form>
+        <div id="teammakeBody">
+            <div id="teammakeAllContainer">
+                <div id="teammakeImageContainer">
+                    <h3>Welcome!</h3>
+                    <span>팀을 생성하고 언제 어디서나 자유롭게 스터디하세요</span>
+                </div>
+                <div id="teammakeContentsContainer">
+                    <h3>Create Team</h3>
+                    <hr></hr>
+                    <form className="teamMakeContainer" onSubmit={handleTeamMake}>
+                        <h4>Team Name</h4>
+                        <div>
+                            <input
+                                type="text"
+                                placeholder="Input team name"
+                                ref={teamnameRef}
+                                autoFocus
+                                required
+                                className="formElements inputElements"
+                            />
+                        </div>
+                        <h4>Description</h4>
+                        <div>
+                            <input
+                                type="text"
+                                placeholder="Description"
+                                ref={teamDescRef}
+                                className="formElements inputElements"
+                            />
+                        </div>
+                        <h4>Select Category</h4>
+                        <div>
+                            <select onChange={handleChangeCategory}>
+                                <option value="국어">국어</option>
+                                <option value="수학">수학</option>
+                                <option value="언어">언어</option>
+                                <option value="IT">IT</option>
+                                <option value="과학">과학</option>
+                            </select>
+                        </div>
+                        <div className="makeButtonContainer">
+                            <Button type="submit" variant="primary" className="formElements">팀 생성</Button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     )
