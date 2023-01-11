@@ -45,6 +45,8 @@ function MyPage() {
     const [ userComments, setUserComments ] = useState("");
     //user email 값을 담고 있을 useState 변수
     const [ userEmail, setUserEmail ] = useState("");
+    //마이페이지의 해당 유저가 속한 팀에 대한 정보를 담는 배열 useState 변수
+    const [ userTeamArray, setUserTeamArray ] = useState([]);
 
     //기존 비밀번호 입력 input에 대한 useRef 변수
     const pwRef = useRef();
@@ -61,7 +63,7 @@ function MyPage() {
     useEffect(() => {
         if(window.sessionStorage.id) {
             document.body.style.backgroundColor = "#f8f8fa";
-            functionUserInfo(window.sessionStorage.id, setUserEmail, setUserComments);
+            functionUserInfo(window.sessionStorage.id, setUserEmail, setUserComments, setUserTeamArray);
         }
         else {
             alert("로그인 되어 있지 않습니다!");
@@ -145,7 +147,7 @@ function MyPage() {
                     </div>
                     <hr></hr>
                     <div className="mypageTeamContentsContainer">
-                        {clickTeamBtnState ? <JoinTeam></JoinTeam> : <ApplyMessage></ApplyMessage>}
+                        {clickTeamBtnState ? <JoinTeam teamArray={userTeamArray}></JoinTeam> : <ApplyMessage></ApplyMessage>}
                     </div>
                 </div>
             </div>

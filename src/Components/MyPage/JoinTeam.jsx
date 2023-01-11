@@ -4,16 +4,18 @@ import { PersonCircle, EmojiFrown } from "react-bootstrap-icons";
 import { Button } from "react-bootstrap";
 //import css
 import "../../css/MyPageCss/JoinTeam.css";
+import { useEffect } from "react";
 
-function JoinTeam() {
+function JoinTeam({teamArray}) {
     return (
         <div className="mypageTeamContainer"> 
             {/*   가입된 팀이 있을 때의 디자인  */}
             <ul className="mypageTeamList">
-                <li>JavaScript 스터디<span>3/8</span></li>
-                <li>Django 스터디<span>2/8</span></li>
-                <li>Unity 스터디<span>4/8</span></li>
-                <li>정찬영 스터디<span>5/8</span></li>
+                {teamArray.map((team) => {
+                    return (
+                        <li key={team[0]} id={team[0]}>{team[0]}<span key={team[0]}>{team[1]}/8</span></li>
+                    )
+                })}
             </ul>
             <div className="mypageTeamMemberContainer">
                 <h2>Team member</h2>

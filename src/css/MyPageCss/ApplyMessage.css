@@ -59,8 +59,8 @@
     padding: 5px 15px;
 }
 
-.cardContainer p {
-    margin: 10px 0 10px;
+#userComments {
+    display: inline-block;
     font-size: 15px;
 }
 /* 팀 신청을 넣은 유저에 대한 정보를 담을 Card Container css */

@@ -94,7 +94,7 @@ function Header() {
                 <Navbar.Brand href="/" id="navTitle">Graduate Project</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Nav className="mr-auto">
-                    <Nav.Link onClick={handleTeamPageClick}>팀 생성</Nav.Link>
+                    <Nav.Link onClick={handleTeamMakePageClick}>팀 생성</Nav.Link>
                     <Nav.Link onClick={handleTeamPageClick}>팀 페이지</Nav.Link>
                     <NavDropdown title="게시판" id="basic-nav-dropdown">
                         <NavDropdown.Item onClick={handleOfferBoard}>팀 구인 게시판</NavDropdown.Item>
