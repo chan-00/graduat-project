@@ -1,7 +1,7 @@
 import axios from "axios";
 import server_ip from "../../serverIP.js";
 
-function functionUserInfo(idValue, setUserEmail, setUserComments, setUserTeamArray) {
+function functionUserInfo(idValue, setUserEmail, setUserComments, setUserTeamArray, setLoadingStatus) {
     //마이페이지 첫 렌더링 시 해당 유저의 이메일 값과 유저 코멘트 값을 받아오기 위한 post 코드이다.
     axios.post("http://" + server_ip + ":8000/back/mypage/", {
         id: idValue,
@@ -12,6 +12,7 @@ function functionUserInfo(idValue, setUserEmail, setUserComments, setUserTeamArr
         setUserEmail(res.data.user_data[0][0]);
         setUserComments(res.data.user_data[0][1]);
         setUserTeamArray(team_data);
+        setLoadingStatus(true);
     }).catch((err) => {
         console.log(err);
     })
