@@ -32,6 +32,16 @@
     margin-right: 10px;
 }
 
+#teamMainContentsContainer > thead > tr {
+    display: grid;
+    grid-template-columns: 20% 20% 60%;
+}
+
+#teamMainContentsContainer > tbody > tr {
+    display: grid;
+    grid-template-columns: 20% 20% 60%;
+}
+
 #teamMainContentsContainer tr:hover {
     background-color: #f8f8fa;
 }

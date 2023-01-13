@@ -41,7 +41,7 @@ function TeamMain() {
         const items = [];
         for (number = 1; number <= Math.ceil(userTeamInfoList.length / 15); number++) {
             items.push(
-                <Pagination.Item key={number} id={number} onClick={handlePaginationBtnOnClick} active={number === currentPageNum}>
+                <Pagination.Item key={number} id={number} onClick={handlePaginationBtnOnClick}>
                     {number}
                 </Pagination.Item>,
             );

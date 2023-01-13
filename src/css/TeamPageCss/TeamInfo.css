@@ -22,7 +22,9 @@
 #teamPageSideBar > div {
     width: 100%;
     text-align: center;
-    padding: 10px 0;
+    padding: 20px 0;
+
+    border-radius: 10px;
 }
 
 #teamPageSideBar > div > svg {
