@@ -1,0 +1,37 @@
+/* 팀 페이지 전체 영역 Container css */
+#teamPageAllContainer {
+    width: 100vw;
+    height: 100vh;
+}
+/* 팀 페이지 전체 영역 Container css */
+
+
+/* 팀 페이지 SideBar Container css */
+#teamPageSideBar {
+    width: 240px;
+    height: 100%;
+    background-color: rgb(33, 37, 41);
+    color: white;
+
+    position: fixed;
+    left: 0;
+    top: 80px;
+    bottom: 0;
+}
+
+#teamPageSideBar > div {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+}
+
+#teamPageSideBar > div > svg {
+    font-size: 25px;
+    margin-right: 20px;
+}
+
+#teamPageSideBar > div > span {
+    vertical-align: middle;
+    font-size: 20px;
+}
+/* 팀 페이지 SideBar Container css */

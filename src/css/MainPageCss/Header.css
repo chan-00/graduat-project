@@ -10,7 +10,13 @@ button {
 /* navbar 전체 영역 css */
 #navContainer {
     height: 80px;
-    max-width: 100%;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 10;
 }
 
 #navContainer * {
