@@ -1,4 +1,5 @@
 //import react bootstrap
+import { Button } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
 import Pagination from 'react-bootstrap/Pagination';
 import Spinner from 'react-bootstrap/Spinner';
@@ -10,6 +11,8 @@ import { PersonCircle } from "react-bootstrap-icons"
 import { useState, useEffect } from 'react';
 //import functions
 import functionGetTeamInfoList from '../../Functions/FunctionTeam/functionGetTeamInfoList';
+//import react router
+import { Link } from 'react-router-dom';
 
 
 //자신이 갖고 있는 팀의 리스트를 볼 수 있는 팀 메인 페이지 component
@@ -140,8 +143,10 @@ function TeamMain() {
     }
     else if(userTeamInfoList.length === 0 && loadingStatus) {
         return (
-            <div id="teamMainAllContainer">
-                속해 있는 팀이 없습니다.
+            <div id="teamMainAllContainer" style={{textAlign:"center"}}>
+                <p id="teamBelongNoneMessage">소속된 팀이 없습니다.</p>
+                <Button variant="outline-primary" className='teamBelongNoneBtn'><Link to="/teammake">팀 생성</Link></Button>
+                <Button variant="outline-primary" className='teamBelongNoneBtn'><Link to="/offerboard">팀 구인 게시판</Link></Button>
             </div>
         )
     }
