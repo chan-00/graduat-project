@@ -1,6 +1,11 @@
 /* team main 페이지의 전체 Container css */
 #teamMainAllContainer {
     height: 100vh;
+    width: 100vw;
+}
+
+#teamMainAllContainer > .spinner-border {
+    margin: 500px 0;
 }
 /* team main 페이지의 전체 Container css */
 
