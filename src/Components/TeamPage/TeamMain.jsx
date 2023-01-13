@@ -5,48 +5,63 @@ import Pagination from 'react-bootstrap/Pagination';
 import Spinner from 'react-bootstrap/Spinner';
 //import css
 import "../../css/TeamPageCss/TeamMain.css";
-//import react bootstrap icons
-import { PersonCircle } from "react-bootstrap-icons"
 //import react hooks
 import { useState, useEffect } from 'react';
 //import functions
 import functionGetTeamInfoList from '../../Functions/FunctionTeam/functionGetTeamInfoList';
 //import react router
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+//import react component
+import TeamListShow from './TeamListShow';
 
 
 //자신이 갖고 있는 팀의 리스트를 볼 수 있는 팀 메인 페이지 component
 function TeamMain() {
+    //화면 라우팅을 위한 useNavigate 변수
+    const navigate = useNavigate();
+
+    //pagination number array를 반복문으로 돌릴 때 사용할 index 변수
+    let number;
 
     //전체 팀 리스트 배열 값을 담을 useState 변수
     const [ userTeamInfoList, setUserTeamInfoList ] = useState([]);
-    //현재 페이지에 보여질 팀 리스트를 담을 배열 useState 변수(pagination 관련)
-    const [ currentTeamInfo, setCurrentTeamInfo ] = useState([]);
     //현재 클릭되어 있는 pagination 번호 값을 담을 useState 변수
     const [ currentPageNum, setCurrentPageNum ] = useState(1);
     //로딩 화면을 표시하기 위한 status 변수
     const [ loadingStatus, setLoadingStatus ] = useState(false);
+    //pagination 버튼을 표시해주기 위한 배열 useState 변수
+    const [ paginationNumArray, setPaginationNumArray ] = useState([]);
 
     //처음 페이지 렌더링 시 팀 리스트 값을 받아오기 위한 useEffect 함수
     useEffect(() => {
         functionGetTeamInfoList(setUserTeamInfoList, window.sessionStorage.id, setLoadingStatus);
     }, []);
+    //팀 리스트를 받아온 후 pagination 값을 표시해주기 위한 useEffect 함수
+    useEffect(() => {
+        const items = [];
+        for (number = 1; number <= Math.ceil(userTeamInfoList.length / 15); number++) {
+            items.push(
+                <Pagination.Item key={number} id={number} onClick={handlePaginationBtnOnClick} active={number === currentPageNum}>
+                    {number}
+                </Pagination.Item>,
+            );
+        }
+        setPaginationNumArray(items);
+    }, [userTeamInfoList]);
+
+    //pagination에 따라 현재 화면에 팀 리스트를 다르게 보여주게 하기 위한 코드
+    const indexOfLast = currentPageNum * 15;
+    const indexOfFirst = indexOfLast - 15;
+    const currentPosts = (posts) => {
+        let currentPosts = 0;
+        currentPosts = posts.slice(indexOfFirst, indexOfLast);
+        return currentPosts;
+    };
 
     //pagination에서 마우스로 클릭 시 해당 버튼에 active 효과 부여하기 위한 onclick 함수
     const handlePaginationBtnOnClick = (e) => {
-        
+        setCurrentPageNum(e.target.id);
     }
-    //pagination 예시를 위한 items 배열 생성
-    /*
-    let items = [];
-    for (let number = 1; number <= 5; number++) {
-        items.push(
-            <Pagination.Item key={number} id={number-1} onClick={handlePaginationBtnOnClick}>
-                {number}
-            </Pagination.Item>,
-        );
-    }
-    */
     
     if(userTeamInfoList.length !== 0 && loadingStatus) {
         return (
@@ -54,89 +69,15 @@ function TeamMain() {
                 <Table id='teamMainContentsContainer'>
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th>Team Name</th>
                             <th>Start Date</th>
                             <th>Member</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>JavaScript 스터디</td>
-                            <td>2019/03/02</td>
-                            <td><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Unity 스터디</td>
-                            <td>2020/03/04</td>
-                            <td><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Django 스터디</td>
-                            <td>2021/04/05</td>
-                            <td><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle></td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>JavaScript 스터디</td>
-                            <td>2019/03/02</td>
-                            <td><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle></td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Unity 스터디</td>
-                            <td>2020/03/04</td>
-                            <td><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle></td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Django 스터디</td>
-                            <td>2021/04/05</td>
-                            <td><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle></td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>JavaScript 스터디</td>
-                            <td>2019/03/02</td>
-                            <td><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle></td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>Unity 스터디</td>
-                            <td>2020/03/04</td>
-                            <td><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle></td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>Django 스터디</td>
-                            <td>2021/04/05</td>
-                            <td><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle></td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>JavaScript 스터디</td>
-                            <td>2019/03/02</td>
-                            <td><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle></td>
-                        </tr>
-                        <tr>
-                            <td>11</td>
-                            <td>Unity 스터디</td>
-                            <td>2020/03/04</td>
-                            <td><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle></td>
-                        </tr>
-                        <tr>
-                            <td>12</td>
-                            <td>Django 스터디</td>
-                            <td>2021/04/05</td>
-                            <td><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle><PersonCircle></PersonCircle></td>
-                        </tr>
-                    </tbody>
+                    <TeamListShow posts={currentPosts(userTeamInfoList)}></TeamListShow>
                 </Table>
                 <div id="teamMainPaginationContainer">
-                    <Pagination id='paginationContainer'>1</Pagination>
+                    <Pagination id='paginationContainer'>{paginationNumArray}</Pagination>
                 </div>
             </div>
         )
@@ -145,8 +86,8 @@ function TeamMain() {
         return (
             <div id="teamMainAllContainer" style={{textAlign:"center"}}>
                 <p id="teamBelongNoneMessage">소속된 팀이 없습니다.</p>
-                <Button variant="outline-primary" className='teamBelongNoneBtn'><Link to="/teammake">팀 생성</Link></Button>
-                <Button variant="outline-primary" className='teamBelongNoneBtn'><Link to="/offerboard">팀 구인 게시판</Link></Button>
+                <Button variant="outline-primary" className='teamBelongNoneBtn' onClick={() => {navigate("/teammake")}}>팀 생성</Button>
+                <Button variant="outline-primary" className='teamBelongNoneBtn' onClick={() => {navigate("/offerboard")}}>팀 구인 게시판</Button>
             </div>
         )
     }
