@@ -1,51 +1,38 @@
-/* 팀 페이지 전체 영역 Container css */
-#teamPageAllContainer {
-    width: 100vw;
-    height: 100vh;
+/* 팀 정보 컴포넌트 전체를 감싸는 Container css */
+#teaminfoAllContainer {
+    
 }
-/* 팀 페이지 전체 영역 Container css */
+/* 팀 정보 컴포넌트 전체를 감싸는 Container css */
 
 
-/* 팀 페이지 SideBar Container css */
-#teamPageSideBar {
-    width: 240px;
-    height: 100%;
-    background-color: rgb(33, 37, 41);
-    color: white;
-
-    position: fixed;
-    left: 0;
-    top: 80px;
-    bottom: 0;
+/* 팀 정보 영역을 감싸는 Container css */
+#teaminfoContainer {
+    width: 1500px;
+    height: 300px;
+    border: 1px solid gray;
+    border-radius: 20px;
+    display: inline-block;
+    margin: 50px 0 50px 400px;
+    padding: 20px;
 }
 
-#teamPageSideBar > div {
-    width: 100%;
-    padding: 20px 30px;
-
-    border-radius: 10px;
-}
-
-#teamPageSideBar > div:hover {
-    cursor: pointer;
-}
-
-#teamPageSideBar > div > svg {
-    font-size: 25px;
+#teaminfoContainer > span {
+    color: gray;
+    font-size: 15px;
+    display: inline-block;
     margin-right: 20px;
 }
+/* 팀 정보 영역을 감싸는 Container css */
 
-#teamPageSideBar > div > span {
-    vertical-align: middle;
-    font-size: 20px;
+
+/* 팀 코멘트 영역을 감싸는 Container css */
+#teamCommentContainer > svg {
+    font-size: 25px;
+    float: right;
+    margin-top: 150px;
 }
-/* 팀 페이지 SideBar Container css */
 
-
-/* 팀 페이지 SideBar Menu 중 클릭된 상황에 대한 css */
-.selectedTeamSideBarMenu {
-    background-color: #0d6efd;
-    color: white;
-    transition-duration: 0.3s;
+#teamCommentContainer > svg:hover {
+    cursor: pointer;
 }
-/* 팀 페이지 SideBar Menu 중 클릭된 상황에 대한 css */
+/* 팀 코멘트 영역을 감싸는 Container css */

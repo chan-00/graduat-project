@@ -5,10 +5,10 @@ import ChatLog from "./ChatLog"
 import Management from "./Management"
 
 
-function TeamInfoContentsContainer({ currentSelectMenu }) {
+function TeamInfoContentsContainer({ currentSelectMenu, teamBelong }) {
     if(currentSelectMenu === "TeamInfo") {
         return (
-            <TeamInfo></TeamInfo>
+            <TeamInfo teamBelong={teamBelong}></TeamInfo>
         )
     }
     else if(currentSelectMenu === "FileHistory") {
