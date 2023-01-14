@@ -2,7 +2,7 @@
 import "../../../css/TeamPageCss/TeamInfo.css";
 //import react bootstrap
 import Spinner from 'react-bootstrap/Spinner';
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, Card } from "react-bootstrap";
 //import react icons
 import { PencilSquare } from "react-bootstrap-icons";
 //import functions
@@ -24,12 +24,13 @@ function TeamInfo({ teamBelong }) {
     const [ teamComment, setTeamComment ] = useState("");
     //comment edit 버튼 클릭 시 코멘트 수정을 할 수 있는 Modal 창을 띄우게 하도록 하는 Boolean useState 변수
     const [ teamCommentModifyModalShow, setTeamCommentModifyModalShow ] = useState(false);
+    //해당 팀에 대한 member 데이터를 갖고 있는 배열 useState 변수
+    const [ teamMemberArray, setTeamMemberArray ] = useState([]);
 
     //첫 렌더링 시 팀 정보를 표시하기 위한 useEffect 함수
     useEffect(() => {
-        functionGetTeamInfo(window.sessionStorage.currentClickTeam, setTeamInfoArray, setLoadingStatus, setTeamComment);
+        functionGetTeamInfo(window.sessionStorage.currentClickTeam, setTeamInfoArray, setLoadingStatus, setTeamComment, setTeamMemberArray);
     }, []);
-    console.log(teaminfoArray);
 
     //comment edit Modal 창을 켜고 끄는 함수이다.
     const handleTeamCommentModifyModalShow = () => setTeamCommentModifyModalShow(true);
@@ -46,15 +47,30 @@ function TeamInfo({ teamBelong }) {
             <div id="teaminfoAllContainer">
                 <div id="teaminfoContainer">
                     <h4>{window.sessionStorage.currentClickTeam}</h4>
-                    <span>Category : {teaminfoArray[0][0][2]}</span>
-                    <span>Start Date : {teaminfoArray[0][0][1]}</span>
+                    <span>Category : {teaminfoArray[2]}</span>
+                    <span>Start Date : {teaminfoArray[1]}</span>
                     <hr></hr>
                     <div id="teamCommentContainer">
                         <span>{teamComment}</span>
                         {teamBelong === "1" ? <PencilSquare title="edit button" onClick={handleTeamCommentModifyModalShow}></PencilSquare> : null}
                     </div>
                 </div>
-                
+                <div id="teamMemberContainer">
+                    {teamMemberArray.map((member) => (
+                        <div className="cardContainer" key={member[0]}>
+                            <Card>
+                            <Card.Img variant="top" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/271deea8-e28c-41a3-aaf5-2913f5f48be6/de7834s-6515bd40-8b2c-4dc6-a843-5ac1a95a8b55.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzI3MWRlZWE4LWUyOGMtNDFhMy1hYWY1LTI5MTNmNWY0OGJlNlwvZGU3ODM0cy02NTE1YmQ0MC04YjJjLTRkYzYtYTg0My01YWMxYTk1YThiNTUuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.BopkDn1ptIwbmcKHdAOlYHyAOOACXW0Zfgbs0-6BY-E" />
+                                <Card.Body>
+                                    <Card.Title className={member[3] === "1" ? "leaderMemberColor" : null}>{member[0]}</Card.Title>
+                                    <Card.Text>
+                                        <span className="userInfoText">{member[2]}</span>
+                                        <span className="userInfoText">{member[1]}</span>
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
+                        </div>
+                    ))}
+                </div>
 
                 <Modal show={teamCommentModifyModalShow} onHide={handleTeamCommentModifyModalClose}>
                 <Modal.Header closeButton>
@@ -87,8 +103,8 @@ function TeamInfo({ teamBelong }) {
     }
     else if(!loadingStatus) {
         return (
-            <div id="teaminfoAllContainer">
-                <Spinner animation="border" />
+            <div id="teaminfoAllContainer" style={{textAlign:"center"}}>
+                <Spinner animation="border" style={{marginTop:"300px"}}/>
             </div>
         )
     }
