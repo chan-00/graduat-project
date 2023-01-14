@@ -12,7 +12,7 @@ import MyPage from "./Components/MyPage/MyPage";
 
 import TeamMake from "./Components/TeamPage/TeamMake";
 import TeamMain from "./Components/TeamPage/TeamMain";
-import TeamInfo from "./Components/TeamPage/TeamInfo";
+import TeamDetail from "./Components/TeamPage/TeamDetail";
 
 import OfferBoard from "./Components/BoardPage/OfferBoard";
 import QuestionBoard from "./Components/BoardPage/QuestionBoard";
@@ -35,7 +35,7 @@ function App() {
 
           <Route path="/teammake" element={<TeamMake></TeamMake>}></Route>
           <Route path="/team" element={<TeamMain></TeamMain>}></Route>
-          <Route path="/teaminfo" element={<TeamInfo></TeamInfo>}></Route>
+          <Route path="/teaminfo" element={<TeamDetail></TeamDetail>}></Route>
           
           <Route path="/offerboard" element={<OfferBoard></OfferBoard>}></Route>
           <Route path="/questionboard" element={<QuestionBoard></QuestionBoard>}></Route>
