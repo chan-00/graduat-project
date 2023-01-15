@@ -12,10 +12,11 @@
     border: 1px solid gray;
     border-radius: 20px;
     display: inline-block;
-    margin: 50px 0 50px 400px;
+    margin: 100px 0 50px 400px;
     padding: 20px;
 
     background-color: #f8f8fa;
+    overflow: auto;
 }
 
 #teaminfoContainer > span {
@@ -62,6 +63,11 @@
     color: gray;
     margin: 10px 0;
     word-break: keep-all;
+    
+    width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 /* 멤버 Card Container css */
 

@@ -9,9 +9,13 @@ import "../../css/MyPageCss/JoinTeam.css";
 import functionUserTeamInfo from "../../Functions/FunctionMyPage/functionUserTeamInfo";
 //import react hooks
 import { useState } from "react";
+//import react router
+import { useNavigate } from "react-router-dom";
 
 //마이페이지에서 현재 계정이 가입된 팀 여부를 보여주는 영역에 대한 컴포넌트
 function JoinTeam({teamArray, teamInfo, setTeamInfo, loadingStatus}) {
+    //화면 이동을 위한 useNavigate 변수
+    const navigate = useNavigate();
 
     //현재 클릭한 팀명 값을 담을 useState 변수
     const [ currentTeamName, setCurrentTeamName ] = useState("");
@@ -20,6 +24,11 @@ function JoinTeam({teamArray, teamInfo, setTeamInfo, loadingStatus}) {
     const handleClickTeam = (e) => {
         functionUserTeamInfo(e.target.id, setTeamInfo);
         setCurrentTeamName(e.target.id);
+    }
+
+    const handleTeamClick = (teamname) => {
+        window.sessionStorage.setItem("currentClickTeam", teamname);
+        navigate("/teaminfo");
     }
 
     if(teamArray.length !== 0 && loadingStatus) {
@@ -34,7 +43,7 @@ function JoinTeam({teamArray, teamInfo, setTeamInfo, loadingStatus}) {
                     })}
                 </ul>
                 <div className="mypageTeamMemberContainer">
-                    <h2>{teamInfo.length !== 0 ? "Team member" : "Select Team"}</h2>
+                    {teamInfo.length !== 0 ? <h2>Team member</h2> : <h2 style={{marginTop:"150px"}}>Select Team</h2>}
                     <div className="mypageTeamMemberInfo">
                         {teamInfo.map((member) => {
                             return (
@@ -45,7 +54,7 @@ function JoinTeam({teamArray, teamInfo, setTeamInfo, loadingStatus}) {
                             )
                         })}
                     </div>
-                    {currentTeamName !== "" ? <Button variant="outline-secondary" className="mypageTeamMemberFooter">{currentTeamName} 페이지로 이동</Button> : null}
+                    {currentTeamName !== "" ? <Button variant="outline-secondary" className="mypageTeamMemberFooter" onClick={() => handleTeamClick(currentTeamName)}>{currentTeamName} 페이지로 이동</Button> : null}
                 </div>
             </div>
         )
@@ -64,7 +73,7 @@ function JoinTeam({teamArray, teamInfo, setTeamInfo, loadingStatus}) {
     else if(!loadingStatus) {
         return (
             <div className="mypageTeamContainer"> 
-            {/*   가입된 팀이 없을 때의 디자인  */}
+            {/* 백엔드로부터 값을 받아오기 전 로딩 Spinner를 보여주기 위한 코드 */}
                 <div id="mypageNoneTeamMessageContainer">
                     <Spinner animation="border" />
                 </div>

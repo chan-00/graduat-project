@@ -7,25 +7,34 @@ function MainCharacterArea() {
                 다양한 아바타를 골라 팀원들과 활동하세요!
             </div>
 
+            {/*
             <div className="mainContentsContainer" data-aos="fade-up" data-aos-duration="1200">
                 <div>
-                    <h2>1. 남자1</h2>
-                    <img src="https://www.shutterstock.com/image-illustration/3d-illustration-smiling-happy-hipster-600w-1901479738.jpg" />
+                    <img src="https://i.ibb.co/sHQZrGv/1.png" />
                 </div>
                 <div>
-                    <h2>2. 남자2</h2>
-                    <img src="https://www.shutterstock.com/image-illustration/3d-illustration-smiling-happy-hipster-600w-1901479738.jpg" />
+                    <img src="https://i.ibb.co/bFQk6cM/2.png" />
+                </div>
+                <div>
+                    <img src="https://i.ibb.co/c8TQDSX/3.png" />
                 </div>
             </div>
 
             <div className="mainContentsContainer" data-aos="fade-up" data-aos-duration="1200">
                 <div>
-                    <h2>3. 여자1</h2>
-                    <img src="https://www.shutterstock.com/image-illustration/3d-illustration-smiling-happy-girl-600w-2053057919.jpg" />
+                    <img src="https://i.ibb.co/pLxBLKq/1.png" />
                 </div>
                 <div>
-                    <h2>4. 여자2</h2>
-                    <img src="https://www.shutterstock.com/image-illustration/3d-illustration-smiling-happy-girl-600w-2053057919.jpg" />
+                    <img src="https://i.ibb.co/RY71C6C/2.png" />
+                </div>
+                <div>
+                    <img src="https://i.ibb.co/ZWqR9Vs/3.png" />
+                </div>
+            </div>
+            */}
+            <div data-aos="fade-up" data-aos-duration="1200" className="mainContentsContainer">
+                <div>
+                    <img src="https://i.ibb.co/nMjWSJ5/image.png"></img>
                 </div>
             </div>
         </div>
