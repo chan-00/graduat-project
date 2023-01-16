@@ -9,7 +9,6 @@ import { Button, Modal } from "react-bootstrap";
 import { useEffect, useState, useRef } from "react";
 //import components
 import JoinTeam from "./JoinTeam";
-import ApplyMessage from "./ApplyMessage";
 //import react router
 import { useNavigate } from "react-router-dom";
 //import functions
@@ -31,8 +30,6 @@ function MyPage() {
     //닉네임 atom 값을 가져와 mypage의 profile 부분에 닉네임을 표시해주기 위한 useRecoilState 값
     const [ nickname, setNickname ] = useRecoilState(atomNickname);
 
-    //메뉴 버튼 클릭(Joined Team, Apply Message)에 따라 해당 버튼의 클래스라던지 밑에 출력되는 컴포넌트를 동적으로 조작하기 위한 Boolean useState 변수값 
-    const [ clickTeamBtnState, setClickTeamBtnState ] = useState(true);
     //password edit 버튼 클릭 시 비밀번호 수정을 할 수 있는 Modal 창을 띄우게 하도록 하는 Boolean useState 변수
     const [ passwordModifyModalShow, setPasswordModifyModalShow ] = useState(false);
     //nickname edit 버튼 클릭 시 닉네임 수정을 할 수 있는 Modal 창을 띄우게 하도록 하는 Boolean useState 변수
@@ -91,15 +88,6 @@ function MyPage() {
     const handleCommentsModifyModalShow = () => setCommentsModifyModalShow(true);
     const handleCommentsModifyModalClose = () => setCommentsModifyModalShow(false);
 
-    //Nav에서 Joined Team 버튼 클릭 시 호출되는 이벤트 함수이다.
-    const handleJoinTeamClick = () => {
-        setClickTeamBtnState(true);
-    }
-    //Nav에서 Apply Message 버튼 클릭 시 호출되는 이벤트 함수이다.
-    const handleApplyMessageClick = () => {
-        setClickTeamBtnState(false);
-    }
-
     //비밀번호 수정 Modal창에서 수정 버튼 클릭 시 호출되는 이벤트 함수이다.
     const handlePasswordModify = (e) => {
         e.preventDefault();
@@ -146,12 +134,11 @@ function MyPage() {
                 </div>
                 <div className="mypageTeamAllContainer mypageContentsContainer">
                     <div className="mypageNavContainer">
-                        <button className={clickTeamBtnState ? 'mypageNavBtnActive' : null} onClick={handleJoinTeamClick}>Joined Team</button>
-                        <button className={clickTeamBtnState ? null : 'mypageNavBtnActive'} onClick={handleApplyMessageClick}>Applied Message</button>
+                        <button className='mypageNavBtnActive'>Joined Team</button>
                     </div>
                     <hr></hr>
                     <div className="mypageTeamContentsContainer">
-                        {clickTeamBtnState ? <JoinTeam teamArray={userTeamArray} teamInfo={userTeamInfoArray} setTeamInfo={setUserTeamInfoArray} loadingStatus={loadingStatus}></JoinTeam> : <ApplyMessage></ApplyMessage>}
+                        <JoinTeam teamArray={userTeamArray} teamInfo={userTeamInfoArray} setTeamInfo={setUserTeamInfoArray} loadingStatus={loadingStatus}></JoinTeam>
                     </div>
                 </div>
             </div>
