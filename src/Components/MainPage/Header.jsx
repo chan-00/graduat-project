@@ -77,14 +77,17 @@ function Header() {
     }
     //팀 구인 게시판으로 가게 하는 이벤트 함수
     const handleOfferBoard = () => {
+        window.sessionStorage.setItem("category", "Team");
         navigate("/offerboard");
     }
     //질문 게시판으로 가게 하는 이벤트 함수
     const handleQuestionBoard = () => {
+        window.sessionStorage.setItem("category", "Question");
         navigate("/questionboard");
     }
     //정보공유 게시판으로 가게 하는 이벤트 함수
     const handleShareBoard = () => {
+        window.sessionStorage.setItem("category", "Share");
         navigate("/shareboard");
     }
 

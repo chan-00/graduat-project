@@ -55,7 +55,7 @@ function TeamInfo({ teamBelong }) {
                         {teamBelong === "1" ? <PencilSquare title="edit button" onClick={handleTeamCommentModifyModalShow}></PencilSquare> : null}
                     </div>
                 </div>
-                <div id="teamMemberContainer">
+                <div className="teamManagementContainer">
                     {teamMemberArray.map((member) => (
                         <div className="cardContainer" key={member[0]}>
                             <Card>

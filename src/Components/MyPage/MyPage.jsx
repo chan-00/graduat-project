@@ -127,7 +127,7 @@ function MyPage() {
                     </div>
                     <hr></hr>
                     <div className="mypageUserContentsListContainer">
-                        <div><p>3</p><span>Join Team</span></div>
+                        <div><p>{userTeamArray.length}</p><span>Join Team</span></div>
                         <div><p>810</p><span>Write Post</span></div>
                         <div><p>270</p><span>Write Comments</span></div>
                     </div>
