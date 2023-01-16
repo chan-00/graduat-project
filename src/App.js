@@ -17,6 +17,7 @@ import TeamDetail from "./Components/TeamPage/TeamDetail";
 import OfferBoard from "./Components/BoardPage/OfferBoard";
 import QuestionBoard from "./Components/BoardPage/QuestionBoard";
 import ShareBoard from "./Components/BoardPage/ShareBoard";
+import BoardDetail from "./Components/BoardPage/BoardDetail";
 
 //import App css
 import "./css/App.css";
@@ -40,6 +41,7 @@ function App() {
           <Route path="/offerboard" element={<OfferBoard></OfferBoard>}></Route>
           <Route path="/questionboard" element={<QuestionBoard></QuestionBoard>}></Route>
           <Route path="/shareboard" element={<ShareBoard></ShareBoard>}></Route>
+          <Route path="/boarddetail" element={<BoardDetail></BoardDetail>}></Route>
         </Routes>
         <Footer></Footer>
       </Router>

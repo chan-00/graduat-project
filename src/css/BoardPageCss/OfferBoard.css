@@ -1,7 +1,17 @@
 /* 팀 구인 게시판 전체 Container css */
-#offerBoardAllContainer {
+.boardAllContainer {
     width: 100vw;
     height: 100vh;
+}
+
+.boardAllContainer > .boardTitleContainer {
+    text-align: center;
+}
+
+.boardAllContainer > .boardTitleContainer > h4 {
+    display: inline-block;
+    cursor: pointer;
+    margin: 50px auto;
 }
 /* 팀 구인 게시판 전체 Container css */
 
@@ -9,20 +19,62 @@
 /* 게시글 영역 Container css */
 table.boardMainContentsContainer {
     width: 70%;
-    margin: 30px auto 20px;
+    margin: 0 auto 20px;
 }
 
 .boardMainContentsContainer > thead > tr {
     display: grid;
-    grid-template-columns: 40% 10% 10% 10% 10% 10%;
+    grid-template-columns: 50% 10% 10% 10% 10% 10%;
+    background-color: #ddffff;
 }
 
 .boardMainContentsContainer > tbody > tr {
     display: grid;
-    grid-template-columns: 40% 10% 10% 10% 10% 10%;
+    grid-template-columns: 50% 10% 10% 10% 10% 10%;
 }
 
-.boardMainContentsContainer tr:hover {
+.boardMainContentsContainer > tbody > tr:hover {
     background-color: #f8f8fa;
 }
 /* 게시글 영역 Container css */
+
+
+/* 게시글 글 작성, 검색 영역을 감싸는 Container css */
+.boardButtonContainer {
+    width: 70%;
+    margin: 0 auto 10px;
+}
+
+.boardButtonContainer > button {
+    border: 1px solid blue;
+    border-radius: 5px;
+    background-color: white;
+    color: blue;
+    padding: 5px 10px;
+}
+
+.boardButtonContainer > button:hover {
+    background-color: blue;
+    color: white;
+    transition-duration: 0.3s;
+}
+/* 게시글 글 작성, 검색 영역을 감싸는 Container css */
+
+
+/* 게시글 검색 영역을 감싸는 Container css */
+.boardSearchContainer {
+    float: right;
+}
+
+.boardSearchContainer > button {
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 5px 10px;
+}
+
+.boardSearchContainer > input {
+    height: 35px;
+    border-radius: 5px;
+}
+/* 게시글 검색 영역을 감싸는 Container css */
