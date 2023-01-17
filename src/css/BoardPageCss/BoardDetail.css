@@ -1,14 +1,13 @@
 /* 게시글 상세 페이지 전체 영역 Container css */
 #boardDetailAllContainer {
     width: 100vw;
-    height: 100vh;
 }
 /* 게시글 상세 페이지 전체 영역 Container css */
 
 
 /* 게시글 상세 페이지 영역 Container css */
 #boardDetailContainer {
-    width: 1000px;
+    width: 1100px;
     margin: 0 auto;
 }
 /* 게시글 상세 페이지 영역 Container css */
@@ -99,11 +98,60 @@
 .commentsContainer {
     border-bottom: 1px solid #b4b4b4;
     display: grid;
-    grid-template-columns: 200px 1fr 200px;
+    grid-template-columns: 100px 1fr 250px;
+}
+
+.commentsContainer > pre {
+    margin: 10px 0;
 }
 
 .commentsContainer > span {
     font-size: 15px;
     margin: 10px 0;
+    display: inline-block;
+}
+
+.commentsContainer > span:last-child {
+    padding-left: 20px;
 }
 /* 게시글 상세 페이지 댓글 Container 컨텐츠 css */
+
+
+/* 게시글 상세 페이지 댓글 작성 영역 Container 컨텐츠 css */
+#boardCommentsWriteContainer {
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+
+#boardCommentsWriteContainer > span {
+    padding-left: 10px;
+    display: inline-block;
+}
+
+#boardCommentsWriteContainer > svg {
+    margin-top: 5px;
+}
+
+#boardCommentsWriteContainer > span, svg {
+    float: left;
+}
+
+#boardCommentsWriteContainer > textarea {
+    resize: none;
+    width: 80%;
+    height: 100px;
+    margin-left: 20px;
+}
+
+#boardCommentsWriteContainer button {
+    float: right;
+    margin-right: 13%;
+    margin-top: 10px;
+    padding: 5px 30px;
+
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: blue;
+    color: white;
+}
+/* 게시글 상세 페이지 댓글 작성 영역 Container 컨텐츠 css */
