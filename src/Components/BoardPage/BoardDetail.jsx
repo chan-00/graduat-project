@@ -10,6 +10,7 @@ import { useEffect, useState, useRef } from "react";
 //import functions
 import functionBoardDetail from "../../Functions/FunctionBoard/functionBoardDetail";
 import functionBoardCommentWrite from "../../Functions/FunctionBoard/functionBoardCommentWrite";
+import functionBoardRecommend from "../../Functions/FunctionBoard/functionBoardRecommend";
 //import react router
 import { useNavigate } from "react-router-dom";
 //import react component
@@ -76,15 +77,23 @@ function BoardDetail() {
 
     //게시글에서 사용자가 댓글 작성 후 등록 버튼 클릭 시 호출되는 이벤트 함수
     const handleWriteComment = () => {
-        console.log(commentRef.current.value);
         functionBoardCommentWrite(window.sessionStorage.id, window.sessionStorage.currentClickBoardID, commentRef, setCommentInfo, commentInfo);
     }
 
     //댓글 작성 textarea 영역에서 키보드 키 입력 시 호출되는 이벤트 함수
     const handleCommentKeyDown = (e) => {
+        //e.code === "Enter"로 textarea 영역에서 엔터키를 누른 상황 인식
+        //!e.shiftKey로 엔터키와 함께 shift 키를 눌렀는지 여부 조사하여 이 조건식이 true라면 엔터키만 누른 상태임을 확인할 수 있다.
+        //!e.nativeEvent.isComposing으로 조합 문자(ex : 한글) 사용 시 현재 입력하는 문자가 조합 중이라면 이 조건식을 넣지 않는 경우 똑같은 내용으로 댓글 작성이 2번 일어난다.
+        //위의 상황을 방지하기 위해 !e.nativeEvent.isComposing 조건식을 추가하여 이 조건식이 true라면 문자가 조합 중이라도 Enter키 입력했을 때 한 번만 백엔드와 통신하는 함수의 호출을 할 수 있게 된다.
         if(e.code === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) {
             handleWriteComment();
         }
+    }
+
+    //게시글에서 사용자가 추천 버튼 클릭 시 호출되는 이벤트 함수
+    const handleRecommendBoard = () => {
+        functionBoardRecommend(window.sessionStorage.currentClickBoardID, setBoardInfo, boardInfo[3]);
     }
 
     if(loadingStatus) {
@@ -117,7 +126,7 @@ function BoardDetail() {
                     </div>
                     <div id="boardCommentsContainer">
                         <div id="boardCommentsIntroContainer">
-                            <div>
+                            <div onClick={handleRecommendBoard}>
                                 <HandThumbsUpFill></HandThumbsUpFill>
                                 <span>추천</span>
                             </div>
