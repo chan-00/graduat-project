@@ -90,6 +90,7 @@
 #mypageNoneTeamMessageContainer > svg {
     font-size: 100px;
     color: gray;
+    float: none;
 }
 
 #mypageNoneTeamMessageContainer > p {

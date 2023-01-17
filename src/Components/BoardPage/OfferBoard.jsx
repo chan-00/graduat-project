@@ -70,6 +70,17 @@ function OfferBoard() {
         functionBoardSearchList(window.sessionStorage.category, setLoadingStatus, setTeamBoardList, searchRef)
     }
 
+    //글 작성 버튼 클릭 시 글 작성 페이지로 이동하게 하는 이벤트 함수
+    const handleClickWriteBoard = () => {
+        if(window.sessionStorage.id) {
+            navigate("/boardwrite");
+        }
+        else {
+            alert("로그인이 되어 있지 않습니다!");
+            navigate("/signin");
+        }
+    }
+
     //pagination에 따라 현재 화면에 팀 리스트를 다르게 보여주게 하기 위한 코드
     const indexOfLast = currentPageNum * 15;
     const indexOfFirst = indexOfLast - 15;
@@ -86,7 +97,7 @@ function OfferBoard() {
                     <h4 onClick={handleClickBoardHeader}>팀 구인 게시판</h4>
                 </div>
                 <div className="boardButtonContainer">
-                    <button>글 작성</button>
+                    <button onClick={handleClickWriteBoard}>글 작성</button>
                     <form className="boardSearchContainer" onSubmit={handleSearchSubmit}>
                         <input 
                             type="text"

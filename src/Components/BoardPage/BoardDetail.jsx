@@ -97,6 +97,8 @@ function BoardDetail() {
 
     //게시글에서 사용자가 댓글 작성 후 등록 버튼 클릭 시 호출되는 이벤트 함수
     const handleWriteComment = () => {
+        //modifyState 문자열의 길이값이 0이 아니라는 것은 현재 수정 상태에서 댓글을 작성한다는 것이므로 백엔드에 수정 요청을 보내는 함수 호출,
+        //문자열 길이값이 0이라면 수정 상태가 아닌 그냥 댓글을 작성하는 상태이므로 백엔드에 댓글 생성 요청을 보내는 함수를 호출한다.
         if(modifyState.length !== 0) {
             functionBoardCommentModify(window.sessionStorage.currentClickBoardID, modifyState, commentRef, setCommentInfo, setModifyState);
         }
@@ -105,9 +107,9 @@ function BoardDetail() {
         }
     }
 
-    //게시글 삭제 버튼 클릭 시 호출되는 이벤트 함수
+    //게시글 수정 버튼 클릭 시 호출되는 이벤트 함수
     const handleBoardModify = () => {
-
+        
     }
     //게시글 삭제 버튼 클릭 시 호출되는 이벤트 함수
     const handleBoardDelete = () => {
@@ -177,18 +179,20 @@ function BoardDetail() {
                         </div>
                         <hr></hr>
                         <BoardCommentListShow posts={currentPosts(commentInfo)} commentRef={commentRef} setModifyState={setModifyState} setCommentInfo={setCommentInfo}></BoardCommentListShow>
-                        <div id="boardCommentsWriteContainer">
-                            <ArrowReturnRight></ArrowReturnRight>
-                            <span>{window.sessionStorage.nickname}</span>
-                            <textarea 
-                                placeholder="Input your comments!"
-                                maxLength="800"
-                                required
-                                ref={commentRef}
-                                onKeyDown={handleCommentKeyDown}
-                            ></textarea>
-                            <button onClick={handleWriteComment}>등록</button>
-                        </div>
+                        {window.sessionStorage.id ? 
+                            <div id="boardCommentsWriteContainer">
+                                <ArrowReturnRight></ArrowReturnRight>
+                                <span>{window.sessionStorage.nickname}</span>
+                                <textarea 
+                                    placeholder="Input your comments!"
+                                    maxLength="800"
+                                    required
+                                    ref={commentRef}
+                                    onKeyDown={handleCommentKeyDown}
+                                ></textarea>
+                                <button onClick={handleWriteComment}>등록</button>
+                            </div>
+                        : null}
                         <div id="teamMainPaginationContainer">
                             <Pagination id='paginationContainer'>{paginationNumArray}</Pagination>
                         </div>
