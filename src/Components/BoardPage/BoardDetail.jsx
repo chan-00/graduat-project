@@ -11,6 +11,8 @@ import { useEffect, useState, useRef } from "react";
 import functionBoardDetail from "../../Functions/FunctionBoard/functionBoardDetail";
 import functionBoardCommentWrite from "../../Functions/FunctionBoard/functionBoardCommentWrite";
 import functionBoardRecommend from "../../Functions/FunctionBoard/functionBoardRecommend";
+import functionBoardCommentModify from "../../Functions/FunctionBoard/functionBoardCommendModify";
+import functionBoardDelete from "../../Functions/FunctionBoard/functionBoardDelete";
 //import react router
 import { useNavigate } from "react-router-dom";
 //import react component
@@ -37,6 +39,8 @@ function BoardDetail() {
     const [ currentPageNum, setCurrentPageNum ] = useState(1);
     //pagination 버튼을 표시해주기 위한 배열 useState 변수
     const [ paginationNumArray, setPaginationNumArray ] = useState([]);
+    //현재 댓글 작성이 수정 상태인지 아닌지를 표현하는 boolean useState 변수
+    const [ modifyState, setModifyState ] = useState("");
 
     //게시글 첫 렌더링 시 해당 게시글의 내용을 받아오기 위한 useEffect 함수
     useEffect(() => {
@@ -69,6 +73,22 @@ function BoardDetail() {
         return currentPosts;
     };
 
+    //팀 구인 게시판으로 가게 하는 이벤트 함수
+    const handleOfferBoard = () => {
+        window.sessionStorage.setItem("category", "Team");
+        navigate("/offerboard");
+    }
+    //질문 게시판으로 가게 하는 이벤트 함수
+    const handleQuestionBoard = () => {
+        window.sessionStorage.setItem("category", "Question");
+        navigate("/questionboard");
+    }
+    //정보공유 게시판으로 가게 하는 이벤트 함수
+    const handleShareBoard = () => {
+        window.sessionStorage.setItem("category", "Share");
+        navigate("/shareboard");
+    }
+
     //게시글 내에서 팀 페이지 바로 가기 버튼 클릭 시 호출되는 이벤트 함수
     const handleTeamButtonClick = () => {
         window.sessionStorage.setItem("currentClickTeam", boardInfo[5]);
@@ -77,7 +97,21 @@ function BoardDetail() {
 
     //게시글에서 사용자가 댓글 작성 후 등록 버튼 클릭 시 호출되는 이벤트 함수
     const handleWriteComment = () => {
-        functionBoardCommentWrite(window.sessionStorage.id, window.sessionStorage.currentClickBoardID, commentRef, setCommentInfo, commentInfo);
+        if(modifyState.length !== 0) {
+            functionBoardCommentModify(window.sessionStorage.currentClickBoardID, modifyState, commentRef, setCommentInfo, setModifyState);
+        }
+        else if(modifyState.length === 0) {
+            functionBoardCommentWrite(window.sessionStorage.id, window.sessionStorage.currentClickBoardID, commentRef, setCommentInfo);
+        }
+    }
+
+    //게시글 삭제 버튼 클릭 시 호출되는 이벤트 함수
+    const handleBoardModify = () => {
+
+    }
+    //게시글 삭제 버튼 클릭 시 호출되는 이벤트 함수
+    const handleBoardDelete = () => {
+        functionBoardDelete(window.sessionStorage.currentClickBoardID, navigate);
     }
 
     //댓글 작성 textarea 영역에서 키보드 키 입력 시 호출되는 이벤트 함수
@@ -101,9 +135,19 @@ function BoardDetail() {
             <div id='boardDetailAllContainer'>
                 <div id="boardDetailContainer">
                     <div id="boardTitleContainer">
-                        <h4>{window.sessionStorage.category === "Team" ? "팀 구인 게시판" : (window.sessionStorage.category === "Question" ? "질문 게시판" : "정보 공유 게시판")}</h4>
+                        {window.sessionStorage.category === "Team" ? <h4 onClick={handleOfferBoard}>팀 구인 게시판</h4> : 
+                            (window.sessionStorage.category === "Question" ? <h4 onClick={handleQuestionBoard}>질문 게시판</h4> : 
+                                <h4 onClick={handleShareBoard}>정보 공유 게시판</h4>)}
                         <hr></hr>
-                        <p>{boardInfo[0]}</p>
+                        <div id="boardContentsTitleContainer">
+                            <span>{boardInfo[0]}</span>
+                            {boardInfo[1] === window.sessionStorage.nickname ?
+                                <div id="boardButtonContainer">
+                                    <button className="outlinePrimary" onClick={handleBoardModify}>수정</button> 
+                                    <button className="outlineDanger" onClick={handleBoardDelete}>삭제</button>
+                                </div>
+                            : null }
+                        </div>
                         <div id="boardAdditionInfoContainer">
                             <span>{boardInfo[1]}</span>
                             <span>{boardInfo[6]}</span>
@@ -132,7 +176,7 @@ function BoardDetail() {
                             </div>
                         </div>
                         <hr></hr>
-                        <BoardCommentListShow posts={currentPosts(commentInfo)}></BoardCommentListShow>
+                        <BoardCommentListShow posts={currentPosts(commentInfo)} commentRef={commentRef} setModifyState={setModifyState} setCommentInfo={setCommentInfo}></BoardCommentListShow>
                         <div id="boardCommentsWriteContainer">
                             <ArrowReturnRight></ArrowReturnRight>
                             <span>{window.sessionStorage.nickname}</span>

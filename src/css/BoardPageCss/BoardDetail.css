@@ -18,6 +18,8 @@
     margin-top: 50px;
     font-weight: bold;
     color: #616161;
+
+    cursor: pointer;
 }
 
 #boardTitleContainer > hr {
@@ -28,10 +30,37 @@
     color: gray;
 }
 
-#boardTitleContainer > p {
+#boardTitleContainer > #boardContentsTitleContainer > span {
     margin: 0;
     font-size: 1.1rem;
     font-weight: bold;
+}
+
+#boardButtonContainer {
+    float: right;
+    margin-right: 25px;
+}
+
+#boardButtonContainer > button {
+    background-color: white;
+    padding: 0 10px;
+    border-radius: 10px;
+    margin: 0 10px;
+    font-size: 15px;
+}
+
+#boardButtonContainer > .outlinePrimary:hover {
+    color: white;
+    background-color: blue;
+}
+
+#boardButtonContainer > .outlineDanger:hover {
+    color: white;
+    background-color: red;
+}
+
+#boardAdditionInfoContainer {
+    margin-top: 5px;
 }
 
 #boardAdditionInfoContainer span {
@@ -116,6 +145,24 @@
 
 .commentsContainer > span:last-child {
     padding-left: 20px;
+}
+
+.commentsContainer div {
+    display: inline-block;
+}
+
+.commentsContainer div > svg {
+    font-size: 17px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.commentsContainer div > svg:first-child {
+    color: blue;
+}
+
+.commentsContainer div > svg:last-child {
+    color: red;
 }
 /* 게시글 상세 페이지 댓글 Container 컨텐츠 css */
 
