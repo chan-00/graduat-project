@@ -60,7 +60,7 @@ function BoardWrite() {
             functionTeamBoardWriteSubmit(window.sessionStorage.category, teamRef.current.value, window.sessionStorage.id, contentsRef, titleRef, navigate);
         }
         else {
-            functionBoardWriteSubmit();
+            functionTeamBoardWriteSubmit(window.sessionStorage.category, "", window.sessionStorage.id, contentsRef, titleRef, navigate);
         }
     }
 
@@ -73,7 +73,7 @@ function BoardWrite() {
                                 <h4 onClick={handleShareBoard}>정보 공유 게시판</h4>)}
                         <hr></hr>
                 </div>
-                <Form onSubmit={handleBoardWriteSubmit}>
+                <Form onSubmit={handleBoardWriteSubmit} autocomplete="off">
                     <Form.Group className="mb-3" controlId="formBasicText">
                         <Form.Label>제목</Form.Label>
                         <Form.Control type="text" placeholder="Input Title" required autoFocus ref={titleRef} maxLength="800" />
@@ -81,7 +81,7 @@ function BoardWrite() {
 
                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                         <Form.Label>내용</Form.Label>
-                        <Form.Control as="textarea" placeholder="Input Contents" rows={6} style={{resize:"none"}} maxLength="800" required ref={contentsRef} />
+                        <Form.Control as="textarea" placeholder="Input Contents" rows={8} style={{resize:"none"}} maxLength="1000" required ref={contentsRef} />
                     </Form.Group>
                     
                     {window.sessionStorage.category === "Team" ?

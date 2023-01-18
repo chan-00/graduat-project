@@ -26,7 +26,15 @@ function functionTeamBoardWriteSubmit(category, teamname, userID, contentsRef, t
         console.log(res);
         if(res.data.post_data === "작성이 완료되었습니다!") {
             alert("게시글 작성이 완료되었습니다!");
-            navigate("/offerboard");
+            if(category === "Team") {
+                navigate("/offerboard");
+            }
+            else if(category === "Question") {
+                navigate("/questionboard");
+            }
+            else if(category === "Share") {
+                navigate("/shareboard");
+            }
         }
     }).catch((err) => {
         console.log(err);

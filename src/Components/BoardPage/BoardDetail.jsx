@@ -168,7 +168,7 @@ function BoardDetail() {
                             </button>
                         :   null
                         }
-                        <p>{boardInfo[4]}</p>
+                        <pre>{boardInfo[4]}</pre>
                     </div>
                     <div id="boardCommentsContainer">
                         <div id="boardCommentsIntroContainer">

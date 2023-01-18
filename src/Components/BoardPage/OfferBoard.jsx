@@ -98,7 +98,7 @@ function OfferBoard() {
                 </div>
                 <div className="boardButtonContainer">
                     <button onClick={handleClickWriteBoard}>글 작성</button>
-                    <form className="boardSearchContainer" onSubmit={handleSearchSubmit}>
+                    <form className="boardSearchContainer" onSubmit={handleSearchSubmit} autocomplete="off">
                         <input 
                             type="text"
                             placeholder="검색어를 입력하세요."
