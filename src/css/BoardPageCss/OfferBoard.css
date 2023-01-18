@@ -1,7 +1,6 @@
 /* 팀 구인 게시판 전체 Container css */
 .boardAllContainer {
     width: 100vw;
-    height: 100vh;
 }
 
 .boardAllContainer > .boardTitleContainer {

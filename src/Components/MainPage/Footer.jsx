@@ -25,16 +25,16 @@ function Footer() {
                     <MDBCol md="2" lg="2" xl="2" className='mx-auto mb-4'>
                     <h6 className='text-uppercase fw-bold mb-4'>Products</h6>
                     <p>
-                        React
+                        <a href="https://ko.reactjs.org/" target="_blank" className='footerLink'>React</a>
                     </p>
                     <p>
-                        Django
+                        <a href="https://www.djangoproject.com/" target="_blank" className='footerLink'>Django</a>
                     </p>
                     <p>
-                        Unity
+                        <a href="https://unity.com/kr" target="_blank" className='footerLink'>Unity</a>
                     </p>
                     <p>
-                        Photon
+                        <a href="https://www.photonengine.com/ko-kr/" target="_blank" className='footerLink'>Photon</a>
                     </p>
                     </MDBCol>
 

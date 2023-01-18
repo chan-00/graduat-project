@@ -17,6 +17,7 @@ import functionPwdModify from "../../Functions/FunctionModify/functionPwdModify"
 import functionNicknameModify from "../../Functions/FunctionModify/functionNicknameModify";
 import functionEmailModify from "../../Functions/FunctionModify/functionEmailModify";
 import functionCommentsModify from "../../Functions/FunctionModify/functionCommentsModify";
+import functionImage from "../../Functions/functionImage";
 //import atom
 import { useRecoilState } from "recoil";
 import atomNickname from "../../Atoms/atomNickname";
@@ -48,6 +49,8 @@ function MyPage() {
     const [ userTeamInfoArray, setUserTeamInfoArray ] = useState([]);
     //마이페이지 첫 렌더링 시 팀 리스트를 받아오기 전까지 로딩 창을 띄우기 위한 useState 변수
     const [ loadingStatus, setLoadingStatus ] = useState(false);
+    //이미지 base64 값 테스트 useState
+    const [ baseValue, setBaseValue ] = useState("");
 
     //기존 비밀번호 입력 input에 대한 useRef 변수
     const pwRef = useRef();
@@ -108,6 +111,31 @@ function MyPage() {
         e.preventDefault();
         functionCommentsModify(window.sessionStorage.id, newCommentsRef, handleCommentsModifyModalClose, setUserComments);
     }
+
+    /* 이미지 전송 테스트 코드 */
+    let uploadFile;
+    let formData;
+
+    const onChangeImg = (e) => {
+        e.preventDefault();
+        
+        if(e.target.files){
+            uploadFile = e.target.files[0];
+            formData = new FormData();
+            formData.append('files',uploadFile);
+        }
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if(formData) {
+            console.log(uploadFile);
+            console.log(formData);
+
+            functionImage(formData, setBaseValue);
+        }
+    }
+    /* 이미지 전송 테스트 코드 */
 
     return (
         <div className="mypageAllContainer">

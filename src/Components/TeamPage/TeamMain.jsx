@@ -62,6 +62,11 @@ function TeamMain() {
     const handlePaginationBtnOnClick = (e) => {
         setCurrentPageNum(e.target.id);
     }
+
+    const handleTeamOfferBoardClick = () => {
+        window.sessionStorage.setItem("category", "Team");
+        navigate("/offerboard");
+    }
     
     if(userTeamInfoList.length !== 0 && loadingStatus) {
         return (
@@ -87,7 +92,7 @@ function TeamMain() {
             <div id="teamMainAllContainer" style={{textAlign:"center"}}>
                 <p id="teamBelongNoneMessage">소속된 팀이 없습니다.</p>
                 <Button variant="outline-primary" className='teamBelongNoneBtn' onClick={() => {navigate("/teammake")}}>팀 생성</Button>
-                <Button variant="outline-primary" className='teamBelongNoneBtn' onClick={() => {navigate("/offerboard")}}>팀 구인 게시판</Button>
+                <Button variant="outline-primary" className='teamBelongNoneBtn' onClick={handleTeamOfferBoardClick}>팀 구인 게시판</Button>
             </div>
         )
     }

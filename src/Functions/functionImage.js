@@ -1,7 +1,7 @@
 import axios from "axios";
 import server_ip from "../serverIP";
 
-function functionImage(formData) {
+function functionImage(formData, setBaseValue) {
     axios({
         url: "http://" + server_ip + ":8000/back/image_test/",
         data: formData,
@@ -10,7 +10,7 @@ function functionImage(formData) {
             'Content-Type': 'multipart/form-data',
         },
     }).then((res) => {
-        console.log(res);
+        setBaseValue(res.data.post_data);
     }).catch((err) => {
         console.log(err);
     });

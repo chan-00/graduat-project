@@ -7,7 +7,7 @@
 
 /* 팀 정보 영역을 감싸는 Container css */
 #teaminfoContainer {
-    width: 1500px;
+    width: 50%;
     height: 300px;
     border: 1px solid gray;
     border-radius: 20px;
@@ -48,7 +48,7 @@
 
 /* 팀 멤버 영역을 감싸는 Container css */
 .teamManagementContainer {
-    width: 1500px;
+    width: 50%;
     height: 400px;
     border: 1px solid gray;
     border-radius: 20px;
