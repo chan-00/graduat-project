@@ -2,29 +2,6 @@ import axios from "axios";
 import server_ip from "../../serverIP.js";
 
 function functionSignUp(idRef, pwRef, pwCheckRef, emailRef, nicknameRef, navigate, setNickname) {
-    //데이터베이스로 sql 쿼리 문으로 데이터를 넘길 때 밑의 3개 값이 포함되면 에러가 발생할 수 있기에 사전 차단하기 위한 조건문을 쓴다.
-    if(idRef.current.value.includes("(") || idRef.current.value.includes(")") || idRef.current.value.includes(";")) {
-        alert("id에 (, ), ; 값 중 하나 이상이 들어가 있습니다.");
-        idRef.current.focus();
-        return false;
-    }
-    if(pwRef.current.value.includes("(") || pwRef.current.value.includes(")") || pwRef.current.value.includes(";")) {
-        alert("비밀번호에 (, ), ; 값 중 하나 이상이 들어가 있습니다.");
-        pwRef.current.value = "";
-        pwRef.current.focus();
-        return false;
-    }
-    if(emailRef.current.value.includes("(") || emailRef.current.value.includes(")") || emailRef.current.value.includes(";")) {
-        alert("이메일에 (, ), ; 값 중 하나 이상이 들어가 있습니다.");
-        emailRef.current.focus();
-        return false;
-    }
-    if(nicknameRef.current.value.includes("(") || nicknameRef.current.value.includes(")") || nicknameRef.current.value.includes(";")) {
-        alert("닉네임에 (, ), ; 값 중 하나 이상이 들어가 있습니다.");
-        nicknameRef.current.focus();
-        return false;
-    }
-
     //사용자가 입력한 아이디, 비밀번호, 닉네임 값이 특정 문자 개수 이상 넘길 수 있도록 제한한다.
     if(idRef.current.value.length < 4) {
         alert("id를 4글자 이상 입력하세요.");

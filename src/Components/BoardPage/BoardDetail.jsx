@@ -109,7 +109,7 @@ function BoardDetail() {
 
     //게시글 수정 버튼 클릭 시 호출되는 이벤트 함수
     const handleBoardModify = () => {
-        
+        navigate("/boardmodify");
     }
     //게시글 삭제 버튼 클릭 시 호출되는 이벤트 함수
     const handleBoardDelete = () => {

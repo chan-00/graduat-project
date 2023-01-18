@@ -9,7 +9,6 @@ import { useEffect, useState, useRef } from "react";
 //import functions
 import functionBoardUserTeamList from "../../Functions/FunctionBoard/functionBoardUserTeamList";
 import functionTeamBoardWriteSubmit from "../../Functions/FunctionBoard/functionTeamBoardWriteSubmit";
-import functionBoardWriteSubmit from "../../Functions/FunctionBoard/functionBoardWriteSubmit";
 
 
 function BoardWrite() {
@@ -26,10 +25,10 @@ function BoardWrite() {
 
     useEffect(() => {
         //페이지 첫 렌더링 시 팀 구인 게시판이라면 팀 리스트를 받아 오는 요청을 보낸다.
-        if(window.sessionStorage.category && window.sessionStorage.id) {
+        if(window.sessionStorage.category === "Team") {
             functionBoardUserTeamList(window.sessionStorage.id, setUserTeamList, navigate);
         }
-        else {
+        if(!window.sessionStorage.id) {
             alert("로그인 한 상태에서만 글을 작성할 수 있습니다.");
             navigate("/signin");
         }
@@ -73,7 +72,7 @@ function BoardWrite() {
                                 <h4 onClick={handleShareBoard}>정보 공유 게시판</h4>)}
                         <hr></hr>
                 </div>
-                <Form onSubmit={handleBoardWriteSubmit} autocomplete="off">
+                <Form onSubmit={handleBoardWriteSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicText">
                         <Form.Label>제목</Form.Label>
                         <Form.Control type="text" placeholder="Input Title" required autoFocus ref={titleRef} maxLength="800" />
@@ -88,7 +87,7 @@ function BoardWrite() {
                         <FloatingLabel controlId="floatingSelect" label="Select Team">
                             <Form.Select aria-label="Default select example" ref={teamRef}>
                                 {userTeamList.map((team) => (
-                                    <option value={team[0]}>{team[0]}</option>
+                                    <option value={team[0]} key={team[0]}>{team[0]}</option>
                                 ))}
                             </Form.Select>
                         </FloatingLabel>

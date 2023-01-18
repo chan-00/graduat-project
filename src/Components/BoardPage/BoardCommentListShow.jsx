@@ -13,7 +13,7 @@ function BoardCommentListShow({posts, commentRef, setModifyState, setCommentInfo
     }
     //삭제 버튼 클릭 시 호출되는 이벤트 함수
     const handleCommentDelete = (deleteCommentID) => {
-        functionBoardCommentDelete(window.sessionStorage.currentClickBoardID, deleteCommentID, setCommentInfo);
+        functionBoardCommentDelete(window.sessionStorage.currentClickBoardID, deleteCommentID, setCommentInfo, setModifyState, commentRef);
     }
 
     return (

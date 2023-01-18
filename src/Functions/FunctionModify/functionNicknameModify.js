@@ -2,12 +2,6 @@ import axios from "axios";
 import server_ip from "../../serverIP";
 
 function functionNicknameModify(idValue, newNicknameRef, handleNicknameModifyModalClose, setNickname) {
-    if (newNicknameRef.current.value.includes("(") || newNicknameRef.current.value.includes(")") || newNicknameRef.current.value.includes(";")) {
-        alert("새로운 닉네임 입력값에 (, ), ; 값 중 하나 이상이 들어가 있습니다.!");
-        newNicknameRef.current.focus();
-        return false;
-    }
-    
     axios.post("http://" + server_ip + ":8000/back/name_ch/", {
         id: idValue,
         nickname: newNicknameRef.current.value,

@@ -19,6 +19,7 @@ import QuestionBoard from "./Components/BoardPage/QuestionBoard";
 import ShareBoard from "./Components/BoardPage/ShareBoard";
 import BoardDetail from "./Components/BoardPage/BoardDetail";
 import BoardWrite from "./Components/BoardPage/BoardWrite";
+import BoardModify from "./Components/BoardPage/BoardModify";
 
 //import App css
 import "./css/App.css";
@@ -44,6 +45,7 @@ function App() {
           <Route path="/shareboard" element={<ShareBoard></ShareBoard>}></Route>
           <Route path="/boarddetail" element={<BoardDetail></BoardDetail>}></Route>
           <Route path="/boardwrite" element={<BoardWrite></BoardWrite>}></Route>
+          <Route path="/boardmodify" element={<BoardModify></BoardModify>}></Route>
         </Routes>
         <Footer></Footer>
       </Router>

@@ -3,13 +3,6 @@ import server_ip from "../../serverIP.js";
 
 //아이디값을 백엔드로 보내고, 중복 여부를 확인하여 화면에 띄울 메시지값(setIdCheckMessage)과 버튼의 활성화 여부값(setSignBtnActivation)을 변경한다.
 function functionIdCheck(idRef, setIdCheckMessage, setSignBtnActivation) {
-    //데이터베이스로 sql 쿼리 문으로 데이터를 넘길 때 밑의 3개 값이 포함되면 에러가 발생할 수 있기에 사전 차단하기 위한 조건문을 쓴다.
-    if(idRef.current.value.includes("(") || idRef.current.value.includes(")") || idRef.current.value.includes(";")) {
-        alert("id에 (, ), ; 값 중 하나 이상이 들어가 있습니다.");
-        idRef.current.value = "";
-        return false;
-    }
-
     //사용자가 입력한 아이디 값이 특정 문자 개수 이상 넘길 수 있도록 제한한다.
     if(idRef.current.value.length < 4) {
         alert("id를 4글자 이상 입력하세요.");

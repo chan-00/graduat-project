@@ -1,7 +1,7 @@
 import axios from "axios";
 import server_ip from "../../serverIP.js";
 
-function functionBoardUserTeamList(userID, setUserTeamList, navigate) {
+function functionBoardUserTeamList(userID, setUserTeamList, navigate, category) {
     //팀 구인 게시판 글 작성 시 백엔드로부터 팀 리스트를 받아 오는 코드이다.
     axios.post("http://" + server_ip + ":8000/back/write_post_button/", {
         id: userID,
