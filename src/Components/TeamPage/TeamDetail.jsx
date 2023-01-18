@@ -67,7 +67,7 @@ function TeamDetail() {
     }
     else if((teamBelong === "-1") && loadingStatus) {
         return (
-            <div id="teamPageAllContainer">
+            <div id="teamPageAllContainer" style={{paddingLeft:"120px"}}>
                 <TeamInfo teamBelong={teamBelong}></TeamInfo>
             </div>
         )

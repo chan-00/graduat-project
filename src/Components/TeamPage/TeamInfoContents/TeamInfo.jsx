@@ -8,6 +8,7 @@ import { PencilSquare } from "react-bootstrap-icons";
 //import functions
 import functionGetTeamInfo from "../../../Functions/FunctionTeam/functionGetTeamInfo";
 import functionTeamCommentModify from "../../../Functions/FunctionTeam/functionTeamCommentModify";
+import functionTeamApply from "../../../Functions/FunctionTeam/functionTeamApply";
 //import react hooks
 import { useEffect, useState, useRef } from "react";
 
@@ -42,11 +43,16 @@ function TeamInfo({ teamBelong }) {
         functionTeamCommentModify(newCommentRef, window.sessionStorage.currentClickTeam, setTeamComment, handleTeamCommentModifyModalClose);
     }
 
+    //팀원이 아닌 계정이 해당 팀에 신청 버튼을 클릭했을 때 호출되는 이벤트 함수
+    const handleApplyButtonClick = () => {
+        functionTeamApply(window.sessionStorage.id, window.sessionStorage.currentClickTeam);
+    }
+
     if(loadingStatus) {
         return (
             <div id="teaminfoAllContainer">
                 <div id="teaminfoContainer">
-                    <h4>{window.sessionStorage.currentClickTeam}</h4>
+                    <h4>{window.sessionStorage.currentClickTeam}{teamBelong === "-1" ? <button className="outlinePrimary" onClick={handleApplyButtonClick}>신청</button> : null}</h4>
                     <span>Category : {teaminfoArray[2]}</span>
                     <span>Start Date : {teaminfoArray[1]}</span>
                     <hr></hr>
